@@ -1,0 +1,84 @@
+#header {
+    width: 100%;
+    height: 180vh;
+    position: relative;
+}
+
+#header #headerMain {
+    width: 100%;
+}
+
+#header #headerMain .headerPo {
+    font-size: 3em;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Bodoni Moda", serif;
+    letter-spacing: -0.05em;
+    line-height: 0.92;
+    ;
+}
+
+/*  headerTOP */
+#header #headerMain #headerTop {
+    width: 100%;
+    height: 480px;
+    font-size: 11em;
+    font-weight: 600;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 300px;
+}
+
+#header #headerMain #headerTop p {
+    margin: 0;
+    line-height: 140px;
+}
+
+/* ===== 슬라이드 슬롯 ===== */
+#header #headerMain #headerTop .slot {
+    --lineH: 140px;
+    height: var(--lineH);
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+#header #headerMain #headerTop .slotInner {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    transform: translateY(calc(var(--step, 0) * -1 * var(--lineH)));
+    transition: transform 1000ms cubic-bezier(.22, 1, .36, 1);
+}
+
+/* 접근성: 모션 감소 선호 시 즉시 전환 */
+@media (prefers-reduced-motion: reduce) {
+    #header #headerMain #headerTop .slotInner {
+        transition: none;
+    }
+}
+
+#header #headerMain #headerTop .slotInner>p {
+    opacity: 1;
+    transition: opacity 420ms cubic-bezier(.22, 1, .36, 1);
+}
+
+/* headerBottom */
+#header #headerMain #headerBottom {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#headerBottom .headerBottomVideo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    pointer-events: none;
+}
