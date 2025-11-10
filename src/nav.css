@@ -80,7 +80,7 @@
 }
 
 .navBox.is-overlay .closeBtn {
-    width: 100%;
+    width: 90%;
     height: 64px;
     display: flex;
     align-items: center;
@@ -153,38 +153,51 @@
     background-color: #fff;
 }
 
+#nav #globalMenu .menuTop li a:hover {
+    color: gray;
+}
+
 /* center list */
 #nav #globalMenu .menuMeddle {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -6%);
+    transform: translate(-50%, 5%);
     font-size: 3em;
     font-weight: bold;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+#nav #globalMenu .menuMeddle li {
+    position: relative;
+    width: 500px;
+    height: 70px;
+}
+
 
 #nav #globalMenu .menuMeddle a {
     position: relative;
-    display: inline-block;
     color: #3b3b3b;
+    width: 100%;
+    height: 100%;
+    padding: 0 .5em;
+    display: grid;
     text-decoration: none;
-    padding: .15em .5em;
-    transition: color .2s ease, opacity .2s ease, transform .2s ease;
+    place-items: center;
+    text-align: center;
     opacity: .45;
-    width: 500px;
-    height: 50px;
-    line-height: 20px;
+    transition: color .2s ease, opacity .2s ease, transform .2s ease;
 }
 
 #nav #globalMenu .menuMeddle a::before {
     content: "";
     position: absolute;
-    inset: -0.5em -.60em;
-    border: 2px solid rgba(0, 0, 0, .18);
+    inset: -0.1em .6em;
     border-radius: 20px;
-    border-right: none;
-    border-left: none;
+    border-top: 2px solid rgba(0, 0, 0, .18);
+    border-bottom: 2px solid rgba(0, 0, 0, .18);
     opacity: 0;
     transform: scale(.98);
     transition: opacity .18s ease, transform .18s ease;
@@ -214,14 +227,37 @@
     position: absolute;
     top: 50%;
     left: 0;
-    background: var(--menu-bg) center / cover no-repeat;
-    transition: opacity .22s ease;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+/* 두 레이어: 겹쳐서 opacity만 전환 */
+#nav #globalMenu .menuBottom .mb-layer {
+    position: absolute;
+    inset: 0;
+    background: var(--bg) center / cover no-repeat;
+    opacity: 0;
+    transition: opacity .2s ease;
+    will-change: opacity;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#nav #globalMenu .menuBottom .mb-layer.is-on {
     opacity: 1;
 }
 
-.menuBottom::after {
-    content: "";
+/* 모션 줄이기 환경 대응 */
+@media (prefers-reduced-motion: reduce) {
+    #nav #globalMenu .menuBottom .mb-layer {
+        transition: none;
+    }
+}
+
+#nav #globalMenu .menuBottom .mb-backdrop {
     position: absolute;
     inset: 0;
+    background: #fff;
+    z-index: 0;
     pointer-events: none;
 }

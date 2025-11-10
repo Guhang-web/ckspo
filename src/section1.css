@@ -1,0 +1,57 @@
+div,
+ul,
+li,
+p {
+    margin: 0;
+}
+
+
+#section1 {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* section1TOP */
+#section1 .section1Top {
+    width: 81%;
+    height: 60vh;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: orange;
+}
+
+#section1 .section1Top .section1Css1 {
+    width: 630px;
+    height: 668px;
+}
+
+#section1 .section1Top .section1Css2 {
+    width: 370px;
+    height: 399px;
+}
+
+
+
+
+/* section1Bottom */
+#section1 .section1Bottom {
+    width: 100%;
+    height: 40vh;
+    background-color: green;
+    position: relative;
+    top: 0%;
+
+}
+
+#section1 .section1Bottom .section1Css3 {
+    width: 240px;
+    height: 256px;
+}
+
+#section1 .section1Bottom .introduce {
+    width: 760px;
+    height: 141px;
+}

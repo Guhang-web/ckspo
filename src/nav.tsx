@@ -1,5 +1,5 @@
 // Nav.tsx
-import React, { useMemo, useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./nav.css";
 
 function MenuIcon({
@@ -20,38 +20,22 @@ function MenuIcon({
     const vbW = Math.max(len + pad * 2, 10);
     const center = vbW / 2;
 
-    let x1 = pad,
-        x2 = vbW - pad;
-    if (align === "left") {
-        x1 = pad;
-        x2 = x1 + len;
-    } else if (align === "center") {
-        x1 = center - len / 2;
-        x2 = center + len / 2;
-    } else {
-        x2 = vbW - pad;
-        x1 = x2 - len;
-    }
+    let x1 = pad, x2 = vbW - pad;
+    if (align === "left") { x1 = pad; x2 = x1 + len; }
+    else if (align === "center") { x1 = center - len / 2; x2 = center + len / 2; }
+    else { x2 = vbW - pad; x1 = x2 - len; }
 
-    const y1 = 2.5,
-        y2 = y1 + gap,
-        y3 = y2 + gap;
+    const y1 = 2.5, y2 = y1 + gap, y3 = y2 + gap;
 
     return (
-        <svg
-            width={vbW}
-            height={height}
-            viewBox={`0 0 ${vbW} ${height}`}
-            fill="none"
-            aria-hidden="true"
-            {...rest}
-        >
+        <svg width={vbW} height={height} viewBox={`0 0 ${vbW} ${height}`} fill="none" aria-hidden="true" {...rest}>
             <line x1={x1} y1={y1} x2={x2} y2={y1} stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
             <line x1={x1} y1={y2} x2={x2} y2={y2} stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
             <line x1={x1} y1={y3} x2={x2} y2={y3} stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
         </svg>
     );
 }
+
 type BgKey = "thought" | "about" | "lab" | "work" | "join" | "contact";
 
 const BG_MAP: Record<BgKey, string> = {
@@ -64,23 +48,49 @@ const BG_MAP: Record<BgKey, string> = {
 };
 
 export default function Nav() {
+    // 선택 고정 상태 + 호버(디바운스) 상태 + 메뉴 열림
     const [selected, setSelected] = useState<BgKey>("thought");
     const [hovered, setHovered] = useState<BgKey | null>(null);
     const [open, setOpen] = useState(false);
 
-    const effectiveKey = hovered ?? selected;
-    const bgStyle = useMemo(
-        () => ({ ["--menu-bg" as any]: `url("${BG_MAP[effectiveKey]}")` }) as React.CSSProperties,
-        [effectiveKey]
-    );
+    // ▼ 호버 디바운스(빠른 연속 호버 보정)
+    const hoverTimer = useRef<number | null>(null);
+    const setHoveredDebounced = (k: BgKey | null) => {
+        if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+        hoverTimer.current = window.setTimeout(() => setHovered(k), 80); // 60~120ms 권장
+    };
 
+    // 실제 표시 키(호버 우선)
+    const effectiveKey = hovered ?? selected;
+
+    // ▼ 크로스페이드 레이어(더블 버퍼)
+    const [active, setActive] = useState<0 | 1>(0);
+    const [layerA, setLayerA] = useState<string>(BG_MAP[effectiveKey]);
+    const [layerB, setLayerB] = useState<string>(BG_MAP[effectiveKey]);
+
+    useEffect(() => {
+        const nextUrl = BG_MAP[effectiveKey];
+        let cancelled = false;
+        const img = new Image();
+        img.onload = () => {
+            if (cancelled) return;
+            if (active === 0) setLayerB(nextUrl);
+            else setLayerA(nextUrl);
+            requestAnimationFrame(() => setActive(prev => (prev === 0 ? 1 : 0)));
+        };
+        img.src = nextUrl;
+        return () => { cancelled = true; };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [effectiveKey]);
+
+    // 메뉴 열고 닫기
     const menuRef = useRef<HTMLDivElement>(null);
     const btnRef = useRef<HTMLButtonElement>(null);
 
     const toggleMenu = () => setOpen(v => !v);
     const closeMenu = () => setOpen(false);
 
-    // ESC/바깥클릭으로 닫기
+    // ESC / 바깥 클릭으로 닫기
     useEffect(() => {
         if (!open) return;
         const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeMenu(); };
@@ -98,7 +108,7 @@ export default function Nav() {
         };
     }, [open]);
 
-    // 링크 핸들러들
+    // 링크/호버 핸들러
     const onLink = (key: BgKey) => (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         setSelected(key);
@@ -111,14 +121,14 @@ export default function Nav() {
             closeMenu();
         }
     };
-    const onEnter = (k: BgKey) => () => setHovered(k);
-    const onLeave = () => setHovered(null);
-    const onFocus = (k: BgKey) => () => setHovered(k);
-    const onBlur = () => setHovered(null);
+    const onEnter = (k: BgKey) => () => setHoveredDebounced(k);
+    const onLeave = () => setHoveredDebounced(null);
+    const onFocus = (k: BgKey) => () => setHoveredDebounced(k);
+    const onBlur = () => setHoveredDebounced(null);
 
     return (
         <nav id="nav" aria-label="주요">
-            {/* ▼ 하단 바: 메뉴 닫힘/열림에 따라 내용만 바꿔 렌더 */}
+            {/* 하단 바: 메뉴 열림 시 X 캡슐 */}
             <ul className={`navBox${open ? " is-overlay" : ""}`} role="list" aria-live="polite">
                 {open ? (
                     <li className="navClose">
@@ -154,7 +164,7 @@ export default function Nav() {
                 )}
             </ul>
 
-            {/* ▼ 메뉴 오버레이 */}
+            {/* 메뉴 오버레이 */}
             <div
                 id="globalMenu"
                 ref={menuRef}
@@ -179,7 +189,20 @@ export default function Nav() {
                     </ul>
                 </div>
 
-                <div className="menuBottom" style={bgStyle} aria-hidden="true" />
+                {/* 하단 배경: 백드롭 + 2중 레이어 크로스페이드 */}
+                <div className="menuBottom" aria-hidden="true">
+                    {/* 백드롭: 항상 깔림 (css에서 불투명 배경색 지정) */}
+                    <span className="mb-backdrop" />
+                    {/* 더블 버퍼 레이어 */}
+                    <span
+                        className={`mb-layer ${active === 0 ? "is-on" : ""}`}
+                        style={{ ["--bg" as any]: `url("${layerA}")` }}
+                    />
+                    <span
+                        className={`mb-layer ${active === 1 ? "is-on" : ""}`}
+                        style={{ ["--bg" as any]: `url("${layerB}")` }}
+                    />
+                </div>
             </div>
         </nav>
     );

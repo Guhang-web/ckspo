@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Loding from "./loding";
 import Header from "./header";
 import Nav from "./nav";
+import Section1 from "./section1";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -23,6 +24,7 @@ export default function App() {
       )}
       <Header/>
       <Nav/>
+      <Section1/>
     </>
   );
 }
