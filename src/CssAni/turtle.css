@@ -1,0 +1,385 @@
+/* 컨테이너: 요구한 크기 고정 */
+.walk-box {
+    width: 20vw;
+    height: 20vh;
+    min-width: 240px;
+    min-height: 240px;
+
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: linear-gradient(#cfe9ff 72%, #d8f2c8 0);
+    box-shadow: inset 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+/* 잔디 */
+.walk-box .ground {
+    position: absolute;
+    inset: 72% 0 0 0;
+    background:
+        repeating-linear-gradient(-12deg,
+            #bde3a6 0 6px,
+            #cbeab5 6px 12px);
+    opacity: .8;
+    z-index: 1;
+}
+
+/* 거북이: 가로 이동 + 살짝 바운스 */
+.turtle {
+    --y: calc(72% - 18%);
+    position: absolute;
+    bottom: var(--y);
+    left: 0%;
+    width: 38%;
+    aspect-ratio: 1.6 / 1;
+    animation: turtle-walk 10s linear infinite;
+    z-index: 2;
+}
+
+/* 등껍질 */
+.shell {
+    position: absolute;
+    left: 12%;
+    top: 22%;
+    width: 66%;
+    height: 58%;
+    background: radial-gradient(circle at 50% 45%, #8cc26b 0 54%, #6aa24b 55% 100%);
+    border-radius: 60% 60% 55% 55%;
+    box-shadow: inset 0 0 0 10% #7fb65f;
+}
+
+/* 머리 */
+.turtleHead {
+    position: absolute;
+    left: 0%;
+    top: 35%;
+    width: 26%;
+    height: 28%;
+    background: #86c06a;
+    border-radius: 60% 40% 40% 60%;
+    transform: translateX(-8%);
+    animation: head-nod .9s ease-in-out infinite;
+}
+
+/* 눈 */
+.turtleEye {
+    position: absolute;
+    left: 10%;
+    top: 43%;
+    width: 4%;
+    height: 4%;
+    background: #262626;
+    border-radius: 50%;
+}
+
+/* 꼬리 */
+.turtleTail {
+    position: absolute;
+    right: 6%;
+    top: 52%;
+    width: 10%;
+    height: 10%;
+    background: #79b55b;
+    border-radius: 80% 20% 80% 0;
+    transform: rotate(35deg);
+    transform-origin: left center;
+    animation: tail-wiggle 1.2s ease-in-out infinite;
+}
+
+/* 다리 공통 */
+.turtleLeg {
+    position: absolute;
+    width: 16%;
+    height: 16%;
+    background: #79b55b;
+    border-radius: 40% 40% 50% 50%;
+    transform-origin: 50% 10%;
+}
+
+/* 앞다리 */
+.turtleLeg.turtleFront.turtleLeft {
+    left: 20%;
+    top: 72%;
+    animation: leg-swing 0.5s ease-in-out infinite;
+}
+
+.turtleLeg.turtleFront.turtleRight {
+    left: 48%;
+    top: 72%;
+    animation: leg-swing 0.5s ease-in-out infinite reverse;
+}
+
+/* 뒷다리 */
+.turtleLeg.turtleBack.turtleLeft {
+    left: 32%;
+    top: 74%;
+    animation: leg-swing 0.5s ease-in-out infinite reverse;
+}
+
+.turtleLeg.turtleBack.turtleRight {
+    left: 60%;
+    top: 74%;
+    animation: leg-swing 0.5s ease-in-out infinite;
+}
+/* 물고기 */
+.fish {
+    width: 14%;
+    height: 10%;
+    border-radius: 50%;
+    background: orange;
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    animation: fish-swim 8s linear infinite;
+}
+/* 물고기 공기 */
+.fishBubble{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255,255,255,0.9) 0%,
+    rgba(174,225,255,0.9) 25%,
+    rgba(74,170,255,0.85) 55%,
+    rgba(30,120,220,0.9) 100%
+  );
+  position: absolute;
+  top: 9px;
+  right: -6px;
+  animation: bubble 6s ease infinite;
+}
+
+.fishEye {
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.fishEyeIn {
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    animation: fish-eye 3s ease-in-out infinite;
+}
+
+.fishMouth {
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.fishMouthUp {
+    top: 8px;
+    right: -4px;
+}
+
+.fishMouthDown {
+    top: 11px;
+    right: -4px;
+}
+
+.fishFin {
+    width: 14px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    transform: rotateX(0deg);
+    animation: fish-fin 1s ease infinite;
+}
+
+.fishTail {
+    width: 10px;
+    height: 10px;
+    background: orange;
+    position: absolute;
+    top: 7px;
+    left: -11px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    animation: fish-tail 2s ease infinite;
+}
+
+/* ===== 애니메이션 ===== */
+@keyframes fish-swim {
+    0% {
+        transform: translateX(-300%) translateY(0);
+    }
+
+    25% {
+        transform: translateX(0%) translateY(-3%);
+    }
+
+    50% {
+        transform: translateX(80%) translateY(0);
+    }
+
+    70% {
+        transform: translateX(10%) translateY(-3%);
+    }
+
+    100% {
+        transform: translateX(500%) translateY(0);
+    }
+}
+
+@keyframes fish-eye {
+
+    0%,
+    8%,
+    10%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    9% {
+        transform: scaleY(.12);
+    }
+
+    60% {
+        transform: scaleY(.12);
+    }
+
+    55%,
+    70% {
+        transform: scaleY(1);
+    }
+}
+@keyframes fish-fin{
+0% { transform: rotateX(0deg);}
+50% { transform: rotateX(45deg);}
+100% { transform: rotateX(0deg);}
+} 
+
+@keyframes leg-swing {
+    0% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(-12deg);
+    }
+
+    100% {
+        transform: rotate(10deg);
+    }
+}
+@keyframes bubble {
+    0% {opacity: 0;
+        transform: translateX(0);}
+    30% {opacity: 1; transform: translateX(20px);}
+    60% {transform: translateY(-10px) translateX(20px);}
+    70% {transform: translateY(-20px) translateX(30px);}
+    80% {transform: translateY(-40px) translateX(30px);}
+    100% {opacity: 0;}
+}
+@keyframes turtle-walk {
+    0% {
+        transform: translateX(-60%) translateY(0);
+    }
+
+    25% {
+        transform: translateX(0%) translateY(-3%);
+    }
+
+    50% {
+        transform: translateX(80%) translateY(0);
+    }
+
+    75% {
+        transform: translateX(120%) translateY(-3%);
+    }
+
+    100% {
+        transform: translateX(260%) translateY(0);
+    }
+}
+
+@keyframes head-nod {
+
+    0%,
+    100% {
+        transform: translateX(-8%) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(-8%) rotate(-3deg);
+    }
+}
+
+@keyframes tail-wiggle {
+
+    0%,
+    100% {
+        transform: rotate(35deg);
+    }
+
+    50% {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes fish-eye {
+
+    0%,
+    8%,
+    10%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    9% {
+        transform: scaleY(.12);
+    }
+
+    60% {
+        transform: scaleY(.12);
+    }
+
+    55%,
+    70% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes fish-tail {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(30deg);
+    }
+
+    40% {
+        transform: rotate(0deg);
+    }
+
+    60% {
+        transform: rotate(-30deg);
+    }
+}
+
+/* 모션 축소 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+
+    .turtle,
+    .turtleLeg,
+    .turtleHead,
+    .turtleTail {
+        animation: none !important;
+    }
+}

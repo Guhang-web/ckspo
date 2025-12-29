@@ -1,0 +1,117 @@
+/* 컨테이너: 네가 준 규격 그대로 */
+.robotBox{
+  width: 20vw;
+  min-width: 240px;
+  min-height: 240px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+/* 색상 토큰(녹슨 금속 톤) */
+:root{
+  --r-line: #5b3923;        /* 외곽선 */
+  --r-rust: #c46a2a;        /* 본체 녹슨 주황 */
+  --r-rust-2: #d98b4e;      /* 패널 밝은 톤 */
+  --r-metal: #9da6ad;       /* 게이지/팔 다리 금속 */
+  --r-eye: #333;            /* 눈 */
+  --r-meter: #58c26b;       /* 게이지 색 */
+  --r-shadow: rgba(0,0,0,.12);
+  --r-lamp: #ffd057;        /* 안테나 램프 */
+}
+
+/* SVG 크기 */
+.robot{ width: 100%; height: 100%;
+ }
+ .robot * {
+  vector-effect: non-scaling-stroke;
+}
+
+/* 공통 스타일 */
+.robotHead,.robotBody,.robotArm,.robotLeg,.robotEar,.panel,.robotMouth,.meterBg,.meterFill{
+  stroke: var(--r-line);
+  stroke-width: 3;
+}
+
+/* 파츠 */
+.robotHead{ fill: var(--r-rust); }
+.robotBody{ fill: var(--r-rust); }
+.panel{ fill: var(--r-rust-2); }
+.robotEar{ fill: var(--r-rust-2); }
+.robotArm,.robotLeg{ fill: var(--r-metal); }
+.robotMouth{ fill: #fff; }
+
+.bolt{ fill: var(--r-line); }
+.meterBg{ fill: #e7ecef; stroke-width: 0; }
+.meterFill{ fill: var(--r-meter); stroke-width: 0; }
+.robotShadow{
+  fill: var(--r-shadow);
+  transform-origin: 100px 172px;
+  animation: shadowPulse 3.2s ease-in-out infinite;
+}
+
+/* 안테나 */
+.antenna line{
+  stroke: var(--r-line);
+  stroke-width: 3;
+}
+.antennaLamp{
+  fill: var(--r-lamp);
+  stroke: var(--r-line);
+  stroke-width: 2;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: lampPulse 1.6s ease-in-out infinite;
+}
+.antenna{
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* 눈: 깜빡임 */
+.robotEye{
+  fill: var(--r-eye);
+  transform-origin: center;
+  transform-box: fill-box;   /* SVG 요소 변형 기준 */
+  animation: blink 5.4s ease-in-out infinite;
+}
+.robotEye.robotEyeRight{ animation-delay: .12s; }
+
+/* 팔 살랑 (양쪽 반대 위상) */
+.robotArm{
+  transform-box: fill-box;
+  transform-origin: 50% 12%;
+  animation: armSwing 1.2s ease-in-out infinite;
+}
+.robotRightArm{ animation-delay: 1.6s; }
+
+/* 로봇 전체의 둥실 + 살짝 흔들림 */
+.robotGroup{
+  transform-box: view-box;
+  transform-origin: 100px 165px;
+}
+
+/* ===== Animations ===== */
+
+@keyframes shadowPulse{
+  0%,100%{ transform: scaleX(1); opacity: .75; }
+  50%    { transform: scaleX(.88); opacity: .6; }
+}
+@keyframes blink{
+  0%, 8%, 10%, 100% { transform: scaleY(1); }
+  9%                { transform: scaleY(.12); }
+  56%               { transform: scaleY(.12); }
+  55%, 57%          { transform: scaleY(1); }
+}
+@keyframes lampPulse{
+  0%,100%{ transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,208,87,0)); }
+  50%    { transform: scale(1.2); filter: drop-shadow(0 0 6px rgba(255,208,87,.9)); }
+}
+@keyframes armSwing{
+  0%,100%{ rotate: 0deg; }
+  50%    { rotate: 6deg; }
+}
+
+/* 호버 시 반응 */
+.robotBox:hover .robotGroup{ animation-duration: 2.6s; }

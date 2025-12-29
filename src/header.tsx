@@ -14,7 +14,7 @@ function Header() {
 
         const onWheel = (e: WheelEvent) => {
             if (isLockedRef.current) {
-                e.preventDefault();
+                // e.preventDefault();
                 return;
             }
 
@@ -27,7 +27,7 @@ function Header() {
 
             if (!inside) return;
 
-            e.preventDefault();
+            // e.preventDefault();
 
             const dir = e.deltaY > 0 ? 1 : -1;
             setStep(prev => Math.max(0, Math.min(3, prev + dir)));
@@ -44,7 +44,7 @@ function Header() {
         <>
             <header id='header' ref={headerRef}>
                 <div id='headerMain'>
-                    <h1 className='headerPo'>BUILD, HONESTLY</h1>
+                    <h1 className='headerPo'>ChoiKwangSeo</h1>
                     <div id='headerTop'>
                         <p className='p-1'>INTEGRITY</p>
                         <p className='p-2'>CONSISTENCY</p>
@@ -69,7 +69,7 @@ function Header() {
                             loop
                             playsInline
                             preload="metadata">
-                            <source src="/mung.mp4" type="video/mp4" />
+                            <source src="/Mung.mp4" type="video/mp4" />
                             Sorry, your browser doesn’t support embedded videos.
                         </video>
                     </div>
