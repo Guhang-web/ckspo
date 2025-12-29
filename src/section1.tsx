@@ -9,6 +9,7 @@ import BoltSmall from './CssAni/BoltSmall'
 import KirbySVG from './CssAni/kirbySVG'
 import FlyingBirds from './CssAni/birlSVG'
 import AirpodsSVG from './CssAni/AirpodsSVG'
+import BlackHoleSVG from './CssAni/BlackHoleSVG'
 
 function Section1() {
     return (
@@ -17,11 +18,11 @@ function Section1() {
                 <div className='section1Top'>
                     <div className='section1Css1'>
                         <div className="bolt-pos">
-                            <VoltorbBounce/>
+                            <VoltorbBounce />
                         </div>
                     </div>
                     <div className='section1Css2'>
-
+                        <BlackHoleSVG/>
                     </div>
                 </div>
                 <div className='section1Middle'>
@@ -33,7 +34,7 @@ function Section1() {
                         <p className="introText">
                             지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로<br />운영과 고객 경험을 쌓았고,<br />
                             퇴사 후 <span className="accent">1년</span> Frontend를 집중 학습했습니다.<br />
-                            <span className="accent">2025.04~</span> 현재는 회사 운영팀에서<br /> 사무보조로 일하며 실행력을 더하고 있습니다.<br />
+                            <span className="accent">2025.04 ~ 12.31</span> 회사 운영팀에서<br /> QA로 일하며 실행력을 더하였습니다.<br />
                             현장 감각과 사용자 관점으로 결과를 만드는<br /><strong>Junior Frontend Developer</strong> <strong>최광서</strong>입니다.
                         </p>
                     </div>
@@ -69,15 +70,10 @@ function Section1() {
                         {/* <FlyingBirds/> */}
                         <div className='explanation'>A bird flying freely in the open sky</div>
                     </div>
-                    <div className='listItem'>
+                    <div className='listItem lastItem'>
                         <div className='s1List airpods1'>AIRPODS</div>
-                        <AirpodsSVG/>
-                        <div className='explanation'>AirPods delivering rich, high-quality sound</div>
-                    </div>
-                    <div className='listItem'>
-                        <div className='s1List egg'>EGG</div>
-                        <div className='eggCss'></div>
-                        <div className='explanation'></div>
+                        {/* <AirpodsSVG/> */}
+                        <div className='explanation'>Hear the richness. AirPods</div>
                     </div>
 
                 </div>

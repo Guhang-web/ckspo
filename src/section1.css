@@ -83,11 +83,8 @@ p {
 
 #section1 .section1Top .section1Css2 {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 370px;
-    height: 399px;
-    background-color: green;
+    right: 100px;
+    bottom: 100px;
 }
 
 
@@ -177,4 +174,7 @@ p {
 
 #section1 .section1Bottom .listItem .explanation {
     font-size: 24px;
+}
+#section1 .section1Bottom .lastItem {
+border-bottom: 1px solid rgba(100, 100, 100, 0.5);
 }
