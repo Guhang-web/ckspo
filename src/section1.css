@@ -8,14 +8,14 @@ p {
 
 #section1 {
     width: 100%;
-    height: 200vh;
+    height: 160vh;
     position: relative;
 }
 
 /* section1TOP */
 #section1 .section1Top {
     width: 81%;
-    height: 70vh;
+    height: 53vh;
     position: relative;
     top: 0;
     left: 50%;
@@ -23,11 +23,9 @@ p {
 }
 
 #section1 .section1Top .section1Css1 {
-    width: 630px;
-    height: 668px;
     position: absolute;
     bottom: 0px;
-    left: 0;
+    left: 50px;
 }
 /*  section1 번개 */
 .zap {
@@ -84,7 +82,7 @@ p {
 #section1 .section1Top .section1Css2 {
     position: absolute;
     right: 100px;
-    bottom: 100px;
+    top: 100px;
 }
 
 
@@ -93,7 +91,7 @@ p {
 /* section1Middle */
 #section1 .section1Middle {
     width: 100%;
-    height: 50vh;
+    height: 37vh;
     position: relative;
     top: 0;
 
@@ -101,9 +99,10 @@ p {
 
 #section1 .section1Middle .section1Layout {
     position: absolute;
-    top: 20px;
-    left: 30%;
-    width: 20vw;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 17vw;
     min-width: 240px;
     min-height: 240px;
     border-radius: 10px;
@@ -121,14 +120,14 @@ p {
 
 #section1 .section1Middle .introduce {
     position: absolute;
-    top: 50px;
+    top: 160px;
     right: -10px;
     width: 40vw;
 }
 
 .introduce .introText {
     font-family: "Bodoni Moda", serif;
-    font-size: clamp(20px, 2vw, 32px);
+    font-size: clamp(20px, 2vw, 20px);
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: -0.01em;
@@ -149,32 +148,27 @@ p {
 
 #section1 .section1Bottom {
     width: 100%;
-    height: 80vh;
+    height: 35vh;
 }
 
 #section1 .section1Bottom .listItem {
     width: 100%;
-    height: 75px;
-    line-height: 70px;
+    height: 40px;
+    line-height: 40px;
     display: flex;
     font-weight: 600;
     color: rgba(150, 150, 150, 0.5);
     border-top: 1px solid rgba(100, 100, 100, 0.5);
+    transition: all 0.3s ease;
 }
 
 #section1 .section1Bottom .listItem:hover {
     color: black;
+    font-size: 2em;
+    height: 75px;
+    line-height: 75px;
 }
 
 #section1 .section1Bottom .listItem .s1List {
     width: 58vw;
-    margin-left: 40px;
-    font-size: 2em;
-}
-
-#section1 .section1Bottom .listItem .explanation {
-    font-size: 24px;
-}
-#section1 .section1Bottom .lastItem {
-border-bottom: 1px solid rgba(100, 100, 100, 0.5);
 }

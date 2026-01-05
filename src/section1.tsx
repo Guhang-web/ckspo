@@ -32,49 +32,49 @@ function Section1() {
                     </div>
                     <div className='introduce'>
                         <p className="introText">
-                            지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로<br />운영과 고객 경험을 쌓았고,<br />
+                            지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로 운영과 고객 경험을 쌓았고,<br />
                             퇴사 후 <span className="accent">1년</span> Frontend를 집중 학습했습니다.<br />
-                            <span className="accent">2025.04 ~ 12.31</span> 회사 운영팀에서<br /> QA로 일하며 실행력을 더하였습니다.<br />
-                            현장 감각과 사용자 관점으로 결과를 만드는<br /><strong>Junior Frontend Developer</strong> <strong>최광서</strong>입니다.
+                            <span className="accent">2025.04 ~ 12.31</span> 회사 운영팀에서 QA로 일하며 실행력을 더하였습니다.<br />
+                            사용자 관점으로 결과를 만드는<strong> Junior Frontend Developer</strong> <strong>최광서</strong>입니다.
                         </p>
                     </div>
                 </div>
                 <div className='section1Bottom'>
-                    <div className='listItem'>
-                        <div className='s1List egg1'>EGG</div>
+                    <ul className='listItem'>
+                        <li className='s1List egg1'>EGG</li>
                         {/* <EggSVG /> */}
-                        <div className='explanation'>The egg character gently bobs.</div>
-                    </div>
-                    <div className='listItem'>
-                        <div className='s1List robot1'>ROBOT</div>
+                        <li className='explanation'>The egg character gently bobs.</li>
+                    </ul>
+                    <ul className='listItem'>
+                        <li className='s1List robot1'>ROBOT</li>
                         {/* <RobotSVG /> */}
-                        <div className='explanation'>The boxy robot gently bobs.</div>
-                    </div>
-                    <div className='listItem'>
-                        <div className='s1List milk1'>MILK</div>
+                        <li className='explanation'>The boxy robot gently bobs.</li>
+                    </ul>
+                    <ul className='listItem'>
+                        <li className='s1List milk1'>MILK</li>
                         {/* <MilkSVG/> */}
-                        <div className='explanation'>The milk carton gently bobs.</div>
-                    </div>
-                    <div className='listItem'>
-                        <div className='s1List turtle1'>TURTLE</div>
+                        <li className='explanation'>The milk carton gently bobs.</li>
+                    </ul>
+                    <ul className='listItem'>
+                        <li className='s1List turtle1'>TURTLE</li>
                         {/* <Turtle/> */}
-                        <div className='explanation'>The shy turtle gently bobs.</div>
-                    </div>
-                    <div className='listItem'>
-                        <div className='s1List kirby1'>KIRBY</div>
+                        <li className='explanation'>The shy turtle gently bobs.</li>
+                    </ul>
+                    <ul className='listItem'>
+                        <li className='s1List kirby1'>KIRBY</li>
                         {/* <KirbySVG/> */}
-                        <div className='explanation'>Kirby Flying Through the Sky</div>
-                    </div>
-                    <div className='listItem'>
-                        <div className='s1List bird1'>BIRD</div>
+                        <li className='explanation'>Kirby Flying Through the Sky</li>
+                    </ul>
+                    <ul className='listItem'>
+                        <li className='s1List bird1'>BIRD</li>
                         {/* <FlyingBirds/> */}
-                        <div className='explanation'>A bird flying freely in the open sky</div>
-                    </div>
-                    <div className='listItem lastItem'>
-                        <div className='s1List airpods1'>AIRPODS</div>
+                        <li className='explanation'>A bird flying freely in the open sky</li>
+                    </ul>
+                    <ul className='listItem'>
+                        <li className='s1List airpods1'>AIRPODS</li>
                         {/* <AirpodsSVG/> */}
-                        <div className='explanation'>Hear the richness. AirPods</div>
-                    </div>
+                        <li className='explanation'>Hear the richness. AirPods</li>
+                    </ul>
 
                 </div>
 

@@ -1,0 +1,70 @@
+#section2 {
+    background-color: rgb(75, 68, 57);
+    width: 100%;
+    height: 160vh;
+    position: relative;
+}
+
+#section2 .section2Layout {
+    width: 300px;
+    height: auto;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#section2 .section2Layout .mungMoon {
+    width: 300px;
+}
+
+/* section2Middle */
+#section2 .section2Middle {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: aliceblue;
+    text-align: center;
+    font-weight: bolder;
+    font-family: "Bodoni Moda", serif;
+}
+
+#section2 .section2Middle .section2Middle_p {
+    font-size: 18px;
+    line-height: 30px;
+}
+
+#section2 .section2Middle .listTool {
+    display: flex;
+    color: aliceblue;
+    font-size: 2em;
+    height: 100px;
+    line-height: 80px;
+    justify-content: space-between;
+    border: 1px solid rgb(110, 108, 108);
+    border-radius: 18px;
+    border-left: none;
+    border-right: none;
+}
+
+#section2 .section2Middle .tool {
+    background: linear-gradient(180deg,
+            #f5bfae 0%,
+            #f86d36 50%,
+            #ff5e01 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#section2 .section2Middle .toolCompetency {
+    font-size: 12px;
+    line-height: 50px;
+}
+
+#section2 .section2Middle .listTool .jQueryLogo {
+    width: 100px;
+    height: 100px;
+}

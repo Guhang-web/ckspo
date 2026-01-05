@@ -1,6 +1,6 @@
 #header {
     width: 100%;
-    height: 180vh;
+    height: 150vh;
     position: relative;
 }
 
@@ -17,29 +17,28 @@
     font-family: "Bodoni Moda", serif;
     letter-spacing: -0.05em;
     line-height: 0.92;
-    ;
 }
 
 /*  headerTOP */
 #header #headerMain #headerTop {
     width: 100%;
-    height: 480px;
-    font-size: 11em;
-    font-weight: 600;
+    height: 280px;
+    font-size: 6em;
+    font-weight: bolder;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     text-align: center;
     position: absolute;
-    top: 300px;
+    top: 200px;
 }
 
 #header #headerMain #headerTop p {
     margin: 0;
-    line-height: 140px;
+    line-height: 80px;
 }
 
 /* ===== 슬라이드 슬롯 ===== */
 #header #headerMain #headerTop .slot {
-    --lineH: 140px;
+    --lineH: 80px;
     height: var(--lineH);
     overflow: hidden;
     position: relative;

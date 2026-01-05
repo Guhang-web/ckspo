@@ -2,8 +2,8 @@ export default function BlackHoleSVG() {
   return (
     <svg
       viewBox="0 0 200 200"
-      width={360}
-      height={360}
+      width={460}
+      height={460}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>

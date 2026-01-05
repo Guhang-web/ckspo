@@ -2,17 +2,15 @@
 #section1 .section1Top .section1Css1 {
     /* 너가 기존에 쓰는 스타일 유지 */
     position: relative;
-    overflow: hidden;
     /* 튐연출시 살짝 여유 */
     display: flex;
     align-items: flex-end;
     /* 바닥 기준으로 튀게 */
-    justify-content: center;
 }
 
 /* 래퍼: 바닥에서 점프 */
 #section1 .section1Top .section1Css1 .voltorb-wrap {
-    --size: 360px;
+    --size: 450px;
     /* 찌리리공 크기 */
     --jump-1: 120px;
     /* 첫 점프 높이 */

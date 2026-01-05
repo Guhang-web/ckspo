@@ -5,6 +5,8 @@ import Header from "./header";
 import Nav from "./nav";
 import Section1 from "./section1";
 import EggSVG from "./CssAni/Egg.SVG";
+import Section2 from "./section2";
+import "./App.css";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -26,7 +28,7 @@ export default function App() {
       <Header/>
       <Nav/>
       <Section1/>
-     
+     <Section2/>
     </>
   );
 }
