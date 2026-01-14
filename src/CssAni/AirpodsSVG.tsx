@@ -6,7 +6,7 @@ export default function AirpodsSVG() {
       viewBox="0 0 600 300"
       width={400}
       height={300}
-      className="airpods"
+      className="airpods1"
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* 배경 */}
@@ -27,7 +27,7 @@ export default function AirpodsSVG() {
       </defs>
 
       {/* LEFT EARBUD */}
-      <g transform="translate(200,150)">
+      <g transform="translate(150,150) scale(1.5)">
         <g className="earbud left">
           <rect x="-4" y="22" width="16" height="50" rx="8" fill="url(#airpodsBody)" />
           <ellipse cx="8" cy="4" rx="35" ry="25" fill="url(#airpodsBody)" />
@@ -52,7 +52,7 @@ export default function AirpodsSVG() {
       </g>
 
       {/* RIGHT EARBUD (좌우 반전) */}
-      <g transform="translate(400,150) scale(-1,1)">
+      <g transform="translate(450,150) scale(-1.5,1.5)">
         <g className="earbud right">
           <rect x="-4" y="22" width="16" height="50" rx="8" fill="url(#airpodsBody)" />
           <ellipse cx="8" cy="4" rx="35" ry="25" fill="url(#airpodsBody)" />

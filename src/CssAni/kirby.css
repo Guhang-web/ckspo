@@ -1,6 +1,6 @@
 .kirbyEye {
   transform-origin: center;
-  animation: kirby-blink 3s infinite;
+  animation: kirby-blink 2s infinite;
 }
 .kirbyArm{
    stroke-width: 1px;
@@ -17,9 +17,9 @@
   transform: rotate(30deg);
   
 }
-.kirby {
+.kirby2 {
   transform-origin: center bottom;
-  animation: kirby-bounce 2s ease-in-out infinite;
+  animation: kirby-bounce 1s ease-in-out infinite;
 }
 .star1 {
   animation: star-fly 4s ease-in-out infinite;

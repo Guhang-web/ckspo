@@ -22,9 +22,9 @@
 }
 
 /* SVG 크기 */
-.robot{ width: 100%; height: 100%;
+.robot1{ width: 100%; height: 100%;
  }
- .robot * {
+ .robot1 * {
   vector-effect: non-scaling-stroke;
 }
 
@@ -73,18 +73,18 @@
 .robotEye{
   fill: var(--r-eye);
   transform-origin: center;
-  transform-box: fill-box;   /* SVG 요소 변형 기준 */
+  transform-box: fill-box; 
   animation: blink 5.4s ease-in-out infinite;
 }
 .robotEye.robotEyeRight{ animation-delay: .12s; }
 
-/* 팔 살랑 (양쪽 반대 위상) */
+ /* 팔 살랑 */
 .robotArm{
   transform-box: fill-box;
   transform-origin: 50% 12%;
   animation: armSwing 1.2s ease-in-out infinite;
 }
-.robotRightArm{ animation-delay: 1.6s; }
+.robotRightArm{ animation-delay: 0.6s; }
 
 /* 로봇 전체의 둥실 + 살짝 흔들림 */
 .robotGroup{

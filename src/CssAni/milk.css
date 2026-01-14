@@ -1,22 +1,27 @@
 /* ── 컨테이너: 요청 규격 + 확실한 정사각 ── */
-.milkBox{
+.milkBox {
   width: 20vw;
   min-width: 240px;
   min-height: 240px;
   display: grid;
   place-items: center;
-  overflow: hidden;        /* 파도/빨대 흔들림 클리핑 */
+  overflow: hidden;
+  /* 파도/빨대 흔들림 클리핑 */
 }
-.milkSVG{ width:100%; height:100%; }
+
+.milkSVG {
+  width: 100%;
+  height: 100%;
+}
 
 /* 팔레트 */
-:root{
+:root {
   --line: #49545b;
   --carton: #e8eef2;
   --carton-top: #4df719;
   --milk: #ffffff;
-  --wave1: rgba(255,255,255,0.85);
-  --wave2: rgba(255,255,255,0.65);
+  --wave1: rgba(255, 255, 255, 0.85);
+  --wave2: rgba(255, 255, 255, 0.65);
   --label: #8dc5ff;
   --text: #2b2b2b;
   --straw: #ff6b6b;
@@ -24,8 +29,15 @@
 }
 
 /* 윤곽 */
-.cartonBody, .cartonTop, .straw, .strawStripe,
-.milkWave, .milkWave2, .milkArm, .milkLeg, .milkMouth{
+.cartonBody,
+.cartonTop,
+.straw,
+.strawStripe,
+.milkWave,
+.milkWave2,
+.milkArm,
+.milkLeg,
+.milkMouth {
   stroke: var(--line);
   stroke-width: 3;
   stroke-linecap: round;
@@ -33,46 +45,69 @@
 }
 
 /* 상단/본체 */
-.cartonTop{  fill: var(--carton-top);  z-index: 10;}
-.cartonBody{ fill: var(--carton); }
+.cartonTop {
+  fill: var(--carton-top);
+  z-index: 10;
+}
+
+.cartonBody {
+  fill: var(--carton);
+}
 
 /* 빨대 */
-.strawGroup{
-  transform-origin: 124px 38px;   /* 뚜껑 연결부 기준 */
+.strawGroup {
+  transform-origin: 124px 38px;
+  /* 뚜껑 연결부 기준 */
   animation: strawWobble 2.6s ease-in-out infinite;
-z-index: 2;
+  z-index: 2;
 }
-.straw{ fill: var(--straw); }
-.strawStripe{ fill: var(--straw-stripe); stroke-width: 0; }
+
+.straw {
+  fill: var(--straw);
+}
+
+.strawStripe {
+  fill: var(--straw-stripe);
+  stroke-width: 0;
+}
 
 /* 내부 우유 */
-.milkFill{ fill: var(--milk); }
-.milkWave{ fill: var(--wave1); stroke-width: 0; }
-.milkWave2{ fill: var(--wave2); stroke-width: 0; }
-.wave{ animation: waveMove 5.5s linear infinite; }
-.w2{ animation-duration: 7.5s; transform: translateX(-40px); }
+.milkFill {
+  fill: var(--milk);
+}
 
 /* 라벨 */
-.labelBg{ fill: var(--label); }
-.labelText{
+.labelBg {
+  fill: var(--label);
+}
+
+.labelText {
   font: 700 12px/1 "Inter", system-ui, -apple-system, sans-serif;
   fill: var(--text);
 }
 
 /* 팔다리 */
-.milkArm{ fill: none; }
-.milkLeg{ fill: var(--line); }
+.milkArm {
+  fill: none;
+}
 
-/* 얼굴 */
-.milkEye{
+.milkLeg {
+  fill: var(--line);
+}
+
+.milkEye {
   fill: var(--line);
   transform-origin: center;
-  animation: blink 5.6s ease-in-out infinite;
+  transform-box: fill-box;
+  animation: blink1 3.6s infinite ease-in-out;
 }
-.milkMouth{ fill: none; }
+
+.milkMouth {
+  fill: none;
+}
 
 /* 전체 둥실 */
-.milkGroup{
+.milkGroup {
   transform-origin: 100px 150px;
   animation:
     bob 3.2s ease-in-out infinite,
@@ -80,28 +115,76 @@ z-index: 2;
 }
 
 /* ── Keyframes ── */
-@keyframes bob{
-  0%,100%{ transform: translateY(0); }
-  50%    { transform: translateY(-6px); }
+@keyframes bob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
-@keyframes subtleTilt{
-  0%,100%{ rotate: 0deg; }
-  50%    { rotate: 0.8deg; }
+
+@keyframes subtleTilt {
+
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 0.8deg;
+  }
 }
-@keyframes strawWobble{
-  0%,100%{ transform: translateY(0); }
-  50%    { transform: translateY(5px); }
+
+@keyframes strawWobble {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
 }
-@keyframes waveMove{
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(240px); }
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(240px);
+  }
 }
-@keyframes blink{
-  0%, 8%, 10%, 100% { transform: scaleY(1); }
-  9%                { transform: scaleY(.12); }
-  56%               { transform: scaleY(.12); }
-  55%, 57%          { transform: scaleY(1); }
+
+@keyframes blink1 {
+
+  0%,
+  8%,
+  10%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  9% {
+    transform: scaleY(.12);
+  }
+
+  56% {
+    transform: scaleY(.12);
+  }
+
+  55%,
+  57% {
+    transform: scaleY(1);
+  }
 }
 
 /* 호버 시 약간 경쾌하게 */
-.milkBox:hover .milkGroup{ animation-duration: 2.6s, 2.6s; }
+.milkBox:hover .milkGroup {
+  animation-duration: 2.6s, 2.6s;
+}

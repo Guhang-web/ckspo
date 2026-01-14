@@ -5,7 +5,7 @@ export default function EggSVG() {
   return (
     <div className="eggBox" aria-label="cute egg animation">
       <svg
-        className="egg"
+        className="egg1"
         viewBox="0 0 200 200"
         role="img"
         aria-hidden="false"

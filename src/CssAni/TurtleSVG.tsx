@@ -6,11 +6,11 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-const Turtle: React.FC<Props> = ({ className = "", style }) => {
+const TurtleSVG: React.FC<Props> = ({ className = "", style }) => {
   return (
-    <div className={`walk-box ${className}`} style={style} aria-label="turtle turtleWalk turtleArea">
+    <div className={`walk-box ${className}`} style={style} aria-label="turtle1 turtleWalk turtleArea">
       <div className="ground" />
-      <div className="turtle" aria-hidden="true">
+      <div className="turtle1" aria-hidden="true">
         <div className="shell" />
         <div className="turtleHead" />
         <div className="turtleEye" />
@@ -35,4 +35,4 @@ const Turtle: React.FC<Props> = ({ className = "", style }) => {
   );
 };
 
-export default Turtle;
+export default TurtleSVG;

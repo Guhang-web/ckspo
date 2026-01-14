@@ -1,5 +1,4 @@
 /* src/index.css — minimal base for sections */
-*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -19,6 +18,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: none;
+  padding: 0;
 }
 body::before {
   content: "";

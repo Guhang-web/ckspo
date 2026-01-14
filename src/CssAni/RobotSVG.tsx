@@ -5,7 +5,7 @@ export default function RobotSVG() {
   return (
     <div className="robotBox" aria-label="rusty robot animation">
       <svg
-        className="robot"
+        className="robot1"
         viewBox="0 0 200 200"
         preserveAspectRatio="xMidYMid meet"
         role="img"

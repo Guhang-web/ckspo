@@ -25,7 +25,7 @@
 }
 
 /* 거북이: 가로 이동 + 살짝 바운스 */
-.turtle {
+.turtle1 {
     --y: calc(72% - 18%);
     position: absolute;
     bottom: var(--y);
@@ -147,7 +147,7 @@
   position: absolute;
   top: 9px;
   right: -6px;
-  animation: bubble 6s ease infinite;
+  animation: bubble 3s ease infinite;
 }
 
 .fishEye {

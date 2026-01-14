@@ -1,9 +1,17 @@
 #nav {
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: fixed;   
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;      
+  z-index: 9999;     
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.nav.isHidden {
+ opacity: 0;
+  transform: translate3d(0, -12px, 0);
+  pointer-events: none;
 }
 
 /* navBar */
@@ -22,6 +30,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1101;
+}
+
+#nav .navBox .navAbout {
+    margin-left: 30px;
 }
 
 .navBox a {
@@ -80,7 +92,7 @@
 }
 
 .navBox.is-overlay .closeBtn {
-    width: 90%;
+    width: 100%;
     height: 64px;
     display: flex;
     align-items: center;
@@ -94,7 +106,7 @@
 }
 
 .navBox.is-overlay .closeBtn:hover {
-    background: #f6f6f6;
+    background: #bdb5b549;
 }
 
 .navBox.is-overlay .closeBtn:focus-visible {
@@ -230,6 +242,10 @@
     overflow: hidden;
     backface-visibility: hidden;
 }
+.menuBottom,
+.menuBottom * {
+  pointer-events: none;
+}
 
 /* 두 레이어: 겹쳐서 opacity만 전환 */
 #nav #globalMenu .menuBottom .mb-layer {
@@ -237,7 +253,7 @@
     inset: 0;
     background: var(--bg) center / cover no-repeat;
     opacity: 0;
-    transition: opacity .2s ease;
+    transition: opacity .12s ease;
     will-change: opacity;
     z-index: 1;
     pointer-events: none;

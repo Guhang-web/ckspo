@@ -6,7 +6,7 @@ export default function MilkSVG() {
     <div className="milkBox" aria-label="cute milk carton animation">
       <svg
         className="milkSVG"
-        viewBox="0 0 300 200"
+        viewBox="0 0 200 300"
         preserveAspectRatio="xMidYMid meet"
         role="img"
       >
@@ -41,29 +41,12 @@ export default function MilkSVG() {
 
           {/* 우윳물(클립 내부 파도) */}
           <g clipPath="url(#milk-clip)" className="milkInside">
-            <rect x="56" y="82" width="88" height="70" rx="8" className="milkFill" />
-            {/* 파도 2겹 */}
-            <g className="wave w1">
-              <path
-                d="M-200 132 C -170 120 -140 144 -110 132 C -80 120 -50 144 -20 132
-                   C 10 120 40 144 70 132 C 100 120 130 144 160 132
-                   L 220 200 L -200 200 Z"
-                className="milkWave"
-              />
-            </g>
-            <g className="wave w2">
-              <path
-                d="M-200 126 C -170 116 -140 140 -110 126 C -80 116 -50 140 -20 126
-                   C 10 116 40 140 70 126 C 100 116 130 140 160 126
-                   L 220 200 L -200 200 Z"
-                className="milkWave2"
-              />
-            </g>
+            <rect x="58" y="82" width="84" height="70" rx="8" className="milkFill" />
           </g>
 
           {/* 라벨 */}
           <g clipPath="url(#label-clip)">
-            <rect x="60" y="118" width="80" height="26" rx="6" className="labelBg" />
+            <rect x="60" y="120" width="80" height="24" rx="6" className="labelBg" />
             <text x="100" y="136" textAnchor="middle" className="labelText">Milk</text>
           </g>
 

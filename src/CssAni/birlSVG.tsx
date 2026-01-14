@@ -22,9 +22,9 @@ export default function FlyingBirds() {
         </g>
       </g>
       <g className="flock">
-        <path className="bird bird_A" d="M10 20 Q20 5 30 20 Q40 5 50 20" />
-        <path className="bird bird_B" d="M60 40 Q70 25 80 40 Q90 25 100 40" />
-        <path className="bird bird_C" d="M120 30 Q130 15 140 30 Q150 15 160 30" />
+        <path className="bird1 bird_A" d="M10 20 Q20 5 30 20 Q40 5 50 20" />
+        <path className="bird1 bird_B" d="M60 40 Q70 25 80 40 Q90 25 100 40" />
+        <path className="bird1 bird_C" d="M120 30 Q130 15 140 30 Q150 15 160 30" />
       </g>
     </svg>
   );
