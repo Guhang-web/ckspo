@@ -1,7 +1,7 @@
 #section3 {
     background-color: rgb(75, 68, 57);
     width: 100%;
-    height: 140vh;
+    height: 130vh;
     position: relative;
 }
 
@@ -41,12 +41,15 @@
     top: -120px;
     background-image: url(/public/section/amioImg.png);
 }
+
 #section3 .poporList .lego {
     background-image: url(/public/section/legoImg.png);
 }
+
 #section3 .poporList .mung {
-background-image: url(/public/section/mungImg.png);
+    background-image: url(/public/section/mungImg.png);
 }
+
 #section3 .poporList .s3Box .poporbar {
     width: 100%;
     height: 80px;
@@ -75,4 +78,41 @@ background-image: url(/public/section/mungImg.png);
 
 .s3Box .poporbar {
     transition: none;
+}
+
+@media (max-width:1024px) {
+    #section3 {
+        height: 110vh;
+    }
+
+    #section3 .poporList .s3Box {
+        height: 50vh;
+    }
+}
+
+@media (max-width:675px) {
+      #section3 {
+        height: 150vh;
+    }
+#section3 .poporList .s3Box {
+    width: 90%;
+    height: 36vh;
+    margin: 0;
+}
+#section3 .poporList .lotteCultureworks {
+    top: 0;
+    margin-bottom: 10px;
+}
+
+#section3 .poporList .amio {
+    top: 0px;
+    margin-bottom: 10px;
+}
+
+#section3 .poporList .lego {
+    margin-bottom: 10px;
+}
+
+#section3 .poporList .mung {
+}
 }
