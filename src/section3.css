@@ -1,7 +1,7 @@
 #section3 {
     background-color: rgb(75, 68, 57);
     width: 100%;
-    height: 190vh;
+    height: 140vh;
     position: relative;
 }
 
@@ -15,9 +15,9 @@
 }
 
 #section3 .poporList .s3Box {
-    width: 42%;
-    height: 90vh;
-    background-color: orange;
+    width: 46%;
+    height: 60vh;
+    background-color: #000;
     margin: 10px;
     position: relative;
     z-index: 22;
@@ -27,16 +27,26 @@
     color: aliceblue;
     font-weight: bolder;
     contain: layout paint;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #section3 .poporList .lotteCultureworks {
     top: -120px;
+    background-image: url(/public/section/lotteCultureworksImg.png);
 }
 
 #section3 .poporList .amio {
     top: -120px;
+    background-image: url(/public/section/amioImg.png);
 }
-
+#section3 .poporList .lego {
+    background-image: url(/public/section/legoImg.png);
+}
+#section3 .poporList .mung {
+background-image: url(/public/section/mungImg.png);
+}
 #section3 .poporList .s3Box .poporbar {
     width: 100%;
     height: 80px;
