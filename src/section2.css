@@ -75,6 +75,7 @@
 #section2 .section2Middle .toola1 {
     margin-bottom: 10px;
 }
+
 #section2 .section2Middle .listTool .listSvg {
     margin-left: 22px;
 }
@@ -87,11 +88,13 @@
 #section2 .section2Middle .listTool .toola2 {
     margin-top: 30px;
 }
-#section2 .listTool .toolLogo{
+
+#section2 .listTool .toolLogo {
     margin-top: 30px;
 }
+
 #section2 .section2Middle .listTool .reactToolLogo {
-margin-top: 20px;
+    margin-top: 20px;
 }
 
 #section2 .section2Middle .tool {
@@ -139,10 +142,43 @@ margin-top: 20px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #section2 .section2Middle .tool__accent {
-    transition: none;
-  }
-  #section2 .section2Middle .listTool {
-    transition: none;
-  }
+    #section2 .section2Middle .tool__accent {
+        transition: none;
+    }
+
+    #section2 .section2Middle .listTool {
+        transition: none;
+    }
+}
+
+@media (max-width:940px) {
+    #section2 .section2Middle .toolCompetency {
+        font-size: 0;
+    }
+    #section2 .section2Middle .section2Tool {
+    left: 0;
+    }
+}
+
+@media (max-width:640px) {
+    #section2 .section2Middle .listTool {
+        font-size: clamp(24px, 10vw, 2em);
+    }
+}
+
+@media (max-width:555px) {
+    #section2 .section2Middle .listTool {
+        font-size: clamp(20px, 5vw, 2em);
+        margin-left: 0;
+    }
+
+    #section2 .section2Middle .tool {
+        margin-left: 0;
+    }
+}
+
+@media (max-width:420px) {
+    #section2 .section2Middle .listTool {
+        font-size: clamp(12px, 4vw, 20px);
+    }
 }

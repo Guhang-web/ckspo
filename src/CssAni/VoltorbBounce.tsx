@@ -1,5 +1,5 @@
 import React from "react";
-import "./voltorb.css"; // 아래 CSS 추가한 파일(또는 같은 파일)에 포함
+import "./voltorb.css"; 
 import BoltSmall from "./BoltSmall";
 
 export default function VoltorbBounce() {

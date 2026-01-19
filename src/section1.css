@@ -24,9 +24,9 @@ p {
 }
 
 #section1 .section1Top .section1Css1 {
-    position: absolute;
-    bottom: 0px;
-    left: 50px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
 }
 
 /*  section1 번개 */
@@ -71,55 +71,50 @@ p {
     }
 }
 
-#section1 .section1Top .section1Css1 .voltorb-wrap {
-    position: relative;
+#section1 .section1Top .section1Css1 .voltorb-wrap .bolt-pos1,
+#section1 .section1Top .section1Css1 .voltorb-wrap .bolt-pos2,
+#section1 .section1Top .section1Css1 .voltorb-wrap .bolt-pos3 {
+    position: absolute;
+    left: 30%;
+    bottom: var(--size);
+    transform: translate(calc(-50% + var(--bx)), calc(var(--by) * -1));
+    pointer-events: none;
+    z-index: 3;
 }
 
 #section1 .section1Top .section1Css1 .voltorb-wrap .bolt-pos1 {
-    --bx: -120px;
-    --by: 0px;
-    position: absolute;
-    left: 30%;
-    bottom: calc(var(--size));
-    transform: translate(calc(-50% + var(--bx)), calc(var(--by) * -1));
-    pointer-events: none;
-    z-index: 3;
-}
-
-#section1 .section1Top .section1Css1 .voltorb-wrap {
-    position: relative;
+    --bx: calc(var(--size) * -0.46);
+    --by: calc(var(--size) * 0.00);
 }
 
 #section1 .section1Top .section1Css1 .voltorb-wrap .bolt-pos2 {
-    --bx: 160px;
-    --by: 50px;
-    position: absolute;
-    left: 30%;
-    bottom: calc(var(--size));
-    transform: translate(calc(-50% + var(--bx)), calc(var(--by) * -1));
-    pointer-events: none;
-    z-index: 3;
-}
-
-#section1 .section1Top .section1Css1 .voltorb-wrap {
-    position: relative;
+    --bx: calc(var(--size) * 0.42);
+    --by: calc(var(--size) * 0.19);
 }
 
 #section1 .section1Top .section1Css1 .voltorb-wrap .bolt-pos3 {
-    --bx: 300px;
-    --by: -100px;
-    position: absolute;
-    left: 30%;
-    bottom: calc(var(--size));
-    transform: translate(calc(-50% + var(--bx)), calc(var(--by) * -1));
-    pointer-events: none;
-    z-index: 3;
+    --bx: calc(var(--size) * 0.85);
+    --by: calc(var(--size) * -0.38);
 }
+
 
 #section1 .section1Top .section1Css2 {
     position: absolute;
     right: 100px;
     top: 100px;
+    width: clamp(200px, 26vw, 360px);
+    height: clamp(200px, 26vw, 360px);
+}
+
+#section1 .section1Css2 {
+    width: clamp(200px, 26vw, 360px);
+    height: clamp(200px, 26vw, 360px);
+}
+
+#section1 .section1Css2>svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 /* section1Middle */
@@ -132,10 +127,10 @@ p {
 
 #section1 .section1Middle .section1Layout {
     position: absolute;
-    left: 50%;
+    left: 48%;
     top: 0;
     transform: translateX(-50%);
-    width: 17vw;
+    width: clamp(300px, 17vw, 325px);
     height: auto;
     z-index: 20;
     border-radius: 10px;
@@ -216,13 +211,13 @@ p {
 
 /* section1Bottom */
 
-#section1 .section1Bottom{
-  position: absolute;
-  left: 0;
-  bottom: 660px;
-  width: 100%;
-  height: 35vh;
-  padding-bottom: 0; 
+#section1 .section1Bottom {
+    position: absolute;
+    left: 0;
+    top: clamp(300px, 49%, 900px);
+    width: 100%;
+    height: auto;
+    padding-bottom: 0;
 }
 
 #section1 .section1Bottom .listItem {
@@ -281,5 +276,57 @@ p {
     #section1 .section1Top .section1Css1,
     #section1 .section1Top .section1Css2 {
         transition: none !important;
+    }
+}
+
+
+@media (max-width:1024px) {
+    #section1 .section1Top {
+        height: auto;
+    }
+
+    #section1 .section1Top .section1Css2 {
+        position: absolute;
+        right: 0;
+    }
+
+    #section1 .section1Middle .introduce {
+        right: 0;
+        width: 40vw;
+    }
+
+    .introduce .introText {
+        font-size: clamp(12px, 2vw, 20px);
+    }
+
+    #section1 .section1Middle .section1Layout {
+        width: clamp(280px, 17vw, 325px);
+        left: 40%;
+    }
+
+    #section1 .section1Bottom {
+        top: clamp(300px, 40%, 900px);
+    }
+}
+
+@media (max-width:870px) {
+    #section1 .section1Bottom {
+        top: clamp(300px, 37%, 900px);
+    }
+}
+
+@media (max-width:725px) {
+    #section1 .section1Bottom {
+        top: clamp(300px, 34%, 900px);
+    }
+
+    #section1 .section1Bottom .listItem .explanation {
+        font-size: clamp(10px, 2vw, 16px);
+    }
+}
+
+@media (max-width:625px) {
+    #section1 .section1Middle .section1Layout {
+        width: clamp(180px, 17vw, 325px);
     }
 }

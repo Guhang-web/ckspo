@@ -95,8 +95,6 @@ const BG_MAP: Record<BgKey, string> = {
   contact: "/nav/nav5.webp",
 };
 
-const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
-
 export default function Nav({ hidden = false }: NavProps) {
   const [selected, setSelected] = useState<BgKey>("thought");
   const [hovered, setHovered] = useState<BgKey | null>(null);
@@ -110,6 +108,7 @@ export default function Nav({ hidden = false }: NavProps) {
     activeRef.current = active;
   }, [active]);
 
+  // 배경 프리로드
   useEffect(() => {
     Object.values(BG_MAP).forEach((src) => {
       const img = new Image();
@@ -128,6 +127,7 @@ export default function Nav({ hidden = false }: NavProps) {
   const [layerA, setLayerA] = useState<string>(BG_MAP[effectiveKey]);
   const [layerB, setLayerB] = useState<string>(BG_MAP[effectiveKey]);
 
+  // 배경 crossfade
   useEffect(() => {
     const nextUrl = BG_MAP[effectiveKey];
 
@@ -183,6 +183,7 @@ export default function Nav({ hidden = false }: NavProps) {
   const toggleMenu = () => setOpen((v) => !v);
   const closeMenu = () => setOpen(false);
 
+  // ESC / 바깥클릭 닫기
   useEffect(() => {
     if (!open) return;
 
@@ -207,11 +208,7 @@ export default function Nav({ hidden = false }: NavProps) {
   }, [open]);
 
   /**
-   * ✅ 핵심: 가상 스크롤 이동 함수
-   * App.tsx의 contentRef(vs__content)의 "레이아웃 좌표계"에서 targetY를 계산해야 함.
-   *
-   * - offsetTop은 offsetParent에 따라 깨질 수 있어서, offsetParent 체인을 타고 올라가며 합산한다.
-   * - 기준은 ".vs__content" (App의 contentRef)로 고정.
+    가상 스크롤: content 좌표계에서 섹션 top 계산
    */
   const getTopInContent = (targetEl: HTMLElement) => {
     const contentEl = document.querySelector(".vs__content") as HTMLElement | null;
@@ -220,7 +217,6 @@ export default function Nav({ hidden = false }: NavProps) {
     let y = 0;
     let node: HTMLElement | null = targetEl;
 
-    // targetEl이 contentEl 내부일 때까지 offsetTop 누적
     while (node && node !== contentEl) {
       y += node.offsetTop;
       node = node.offsetParent as HTMLElement | null;
@@ -229,24 +225,30 @@ export default function Nav({ hidden = false }: NavProps) {
     return y;
   };
 
+  /**
+   * App.tsx로 이동 요청 이벤트 발사
+   */
   const vscrollToId = (id: string) => {
-    const el = document.getElementById(id) as HTMLElement | null;
     const contentEl = document.querySelector(".vs__content") as HTMLElement | null;
-    if (!el || !contentEl) return;
+    if (!contentEl) return;
+
+    // top(Thought 같은) 처리
+    if (id === "top") {
+      window.dispatchEvent(new CustomEvent("vscroll:to", { detail: { y: 0 } }));
+      history.replaceState(null, "", `#`);
+      return;
+    }
+
+    const el = document.getElementById(id) as HTMLElement | null;
+    if (!el) return;
 
     const y = getTopInContent(el);
-
-    // ✅ App.tsx에서 쓰는 동일 패턴: vscroll 이벤트를 계속 받고 있을 컴포넌트들을 위해
-    // transform 이동은 App에서 tick이 적용하므로, 여기서는 "wheel처럼 targetYRef를 만질 수가 없음".
-    // 대신 가장 안전한 방식: 커스텀 이벤트로 App에게 "이동 요청"을 보낸다.
     window.dispatchEvent(new CustomEvent("vscroll:to", { detail: { y } }));
-
-    // URL hash는 업데이트(브라우저 기본 스크롤은 막음)
     history.replaceState(null, "", `#${id}`);
   };
 
   /**
-   * ✅ 섹션 링크(About/Lab/Work/Contact)는 가상 스크롤 이동으로만 처리
+   상단 nav(About/Lab/Work/Contact): 가상 스크롤 점프
    */
   const onJump = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -263,23 +265,28 @@ export default function Nav({ hidden = false }: NavProps) {
   };
 
   /**
-   * 기존 overlay 메뉴(Thought/About/Lab/Work/Join/Contact)는 네 UI 로직 유지
-   * 여기서는 "selected"만 바꾸고 닫는다 (원하면 이것도 섹션 점프로 바꿀 수 있음)
+    overlay 메뉴(menuMeddle): 선택 + 닫기 + 가상 스크롤 점프
    */
-  const onLink = (key: BgKey) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onMenuJump = (key: BgKey, id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setSelected(key);
     closeMenu();
+    vscrollToId(id);
   };
 
-  const onLinkKey = (key: BgKey) => (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      setSelected(key);
-      closeMenu();
-    }
-  };
+  const onMenuJumpKey =
+    (key: BgKey, id: string) => (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setSelected(key);
+        closeMenu();
+        vscrollToId(id);
+      }
+    };
 
+  /**
+   hover/focus 효과
+   */
   const onEnter = (k: BgKey) => () => setHovered(k);
   const onLeave = () => setHovered(null);
   const onFocus = (k: BgKey) => () => setHovered(k);
@@ -358,9 +365,9 @@ export default function Nav({ hidden = false }: NavProps) {
           <ul className="menuMeddle">
             <li>
               <a
-                href="#thought"
-                onClick={onLink("thought")}
-                onKeyDown={onLinkKey("thought")}
+                href="#"
+                onClick={onMenuJump("thought", "top")}
+                onKeyDown={onMenuJumpKey("thought", "top")}
                 onMouseEnter={onEnter("thought")}
                 onMouseLeave={onLeave}
                 onFocus={onFocus("thought")}
@@ -369,11 +376,12 @@ export default function Nav({ hidden = false }: NavProps) {
                 Thought
               </a>
             </li>
+
             <li>
               <a
-                href="#about"
-                onClick={onLink("about")}
-                onKeyDown={onLinkKey("about")}
+                href="#section1"
+                onClick={onMenuJump("about", "section1")}
+                onKeyDown={onMenuJumpKey("about", "section1")}
                 onMouseEnter={onEnter("about")}
                 onMouseLeave={onLeave}
                 onFocus={onFocus("about")}
@@ -382,11 +390,12 @@ export default function Nav({ hidden = false }: NavProps) {
                 About
               </a>
             </li>
+
             <li>
               <a
-                href="#lab"
-                onClick={onLink("lab")}
-                onKeyDown={onLinkKey("lab")}
+                href="#section2"
+                onClick={onMenuJump("lab", "section2")}
+                onKeyDown={onMenuJumpKey("lab", "section2")}
                 onMouseEnter={onEnter("lab")}
                 onMouseLeave={onLeave}
                 onFocus={onFocus("lab")}
@@ -395,11 +404,12 @@ export default function Nav({ hidden = false }: NavProps) {
                 Lab
               </a>
             </li>
+
             <li>
               <a
-                href="#work"
-                onClick={onLink("work")}
-                onKeyDown={onLinkKey("work")}
+                href="#section3"
+                onClick={onMenuJump("work", "section3")}
+                onKeyDown={onMenuJumpKey("work", "section3")}
                 onMouseEnter={onEnter("work")}
                 onMouseLeave={onLeave}
                 onFocus={onFocus("work")}
@@ -408,11 +418,12 @@ export default function Nav({ hidden = false }: NavProps) {
                 Work
               </a>
             </li>
+
             <li>
               <a
-                href="#join"
-                onClick={onLink("join")}
-                onKeyDown={onLinkKey("join")}
+                href="#section1"
+                onClick={onMenuJump("join", "section1")}
+                onKeyDown={onMenuJumpKey("join", "section1")}
                 onMouseEnter={onEnter("join")}
                 onMouseLeave={onLeave}
                 onFocus={onFocus("join")}
@@ -421,11 +432,12 @@ export default function Nav({ hidden = false }: NavProps) {
                 Join
               </a>
             </li>
+
             <li>
               <a
-                href="#contact"
-                onClick={onLink("contact")}
-                onKeyDown={onLinkKey("contact")}
+                href="#footer"
+                onClick={onMenuJump("contact", "footer")}
+                onKeyDown={onMenuJumpKey("contact", "footer")}
                 onMouseEnter={onEnter("contact")}
                 onMouseLeave={onLeave}
                 onFocus={onFocus("contact")}

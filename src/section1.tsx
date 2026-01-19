@@ -6,7 +6,7 @@ import EggSVG from "./CssAni/Egg.SVG";
 import RobotSVG from "./CssAni/RobotSVG";
 import MilkSVG from "./CssAni/MilkSVG";
 import TurtleSVG from "./CssAni/TurtleSVG";
-import VoltorbBounce from "./CssAni/VoltorbBounceSVG";
+import VoltorbBounce from "./CssAni/VoltorbBounce";
 import KirbySVG from "./CssAni/kirbySVG";
 import FlyingBirds from "./CssAni/birlSVG";
 import AirpodsSVG from "./CssAni/AirpodsSVG";
@@ -115,13 +115,6 @@ export default function Section1() {
     };
   }, []);
 
-  /**
-   * (2) ✅ 스투키 완전 재현 (transform 가상스크롤에서도 100% 동작)
-   * 핵심: offsetTop 같은 "문서좌표" 말고, getBoundingClientRect().top(현재 화면좌표)를 써야 함.
-   *
-   * pinTop(in middle) = clamp( fixedTop - middleRect.top, 0, middleRect.height - pinH )
-   * - middleRect.top이 스크롤에 따라 변하므로 pin이 화면 중앙에 고정된 것처럼 보임.
-   */
   useEffect(() => {
     const middle = middleRef.current;
     const pin = pinRef.current;
@@ -134,7 +127,7 @@ export default function Section1() {
     let raf = 0;
 
     const apply = () => {
-      const mRect = middle.getBoundingClientRect(); // ✅ transform 환경에서도 정확
+      const mRect = middle.getBoundingClientRect();
       const pinH = pin.getBoundingClientRect().height;
       const fixedTop = window.innerHeight * 0.5 - pinH * 0.5;
 
@@ -175,7 +168,7 @@ export default function Section1() {
   }, []);
 
   /**
-   * (3) activeIndex: pin과 가장 가까운 리스트 아이템 활성화
+    activeIndex: pin과 가장 가까운 리스트 아이템 활성화
    */
   useEffect(() => {
     const pin = pinRef.current;
@@ -243,7 +236,7 @@ export default function Section1() {
       <div className="section1Top">
         <div className="section1Css1" ref={voltorbWrapRef}>
           <div className="bolt-pos">
-            <VoltorbBounce />
+            <VoltorbBounce/>
           </div>
         </div>
 

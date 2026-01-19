@@ -59,7 +59,7 @@ function Section2() {
     };
 
     const measure = () => {
-      // ✅ offset 기반 측정만 (getBoundingClientRect 금지)
+      //  offset 기반 측정만 (getBoundingClientRect 금지)
       state.toolDocTop = getDocTop(tool);
       state.toolHeight = tool.offsetHeight;
 
@@ -110,7 +110,7 @@ function Section2() {
       const m = state.measures[idx];
       if (!m) return;
 
-      // ✅ accent는 tool 내부 레이아웃 좌표만 사용
+      // accent는 tool 내부 레이아웃 좌표만 사용
       // 서브픽셀 떨림 최소화 (원하면 Math.round)
       const y = Math.round(m.top);
 
@@ -190,14 +190,14 @@ function Section2() {
       requestFrame();
     };
 
-    // ✅ ResizeObserver: 레이아웃 변화 감지(폰트/줄바꿈/반응형 포함)
+    //  ResizeObserver: 레이아웃 변화 감지(폰트/줄바꿈/반응형 포함)
     const ro = new ResizeObserver(() => {
       markDirtyAndUpdate();
     });
     ro.observe(tool);
     items.forEach((el) => ro.observe(el));
 
-    // ✅ 폰트 로딩 이후 한 번 더
+    //  폰트 로딩 이후 한 번 더
     const fontsAny = (document as any).fonts;
     if (fontsAny?.ready?.then) {
       fontsAny.ready.then(() => {

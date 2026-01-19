@@ -1,27 +1,12 @@
-/* ===== Voltorb in section1 ===== */
-#section1 .section1Top .section1Css1 {
-    /* 너가 기존에 쓰는 스타일 유지 */
-    position: relative;
-    /* 튐연출시 살짝 여유 */
-    display: flex;
-    align-items: flex-end;
-    /* 바닥 기준으로 튀게 */
-}
-
 /* 래퍼: 바닥에서 점프 */
 #section1 .section1Top .section1Css1 .voltorb-wrap {
-    --size: 450px;
-    /* 찌리리공 크기 */
+    --size: 24.2vw;
     --jump-1: 120px;
-    /* 첫 점프 높이 */
     --jump-2: 60px;
-    /* 두 번째 점프 높이 */
     --duration: 1.6s;
-    /* 전체 주기 */
     position: relative;
     width: var(--size);
     height: calc(var(--size) + 40px);
-    /* 그림자 여유 */
     display: grid;
     place-items: end center;
 }
@@ -35,32 +20,29 @@
     box-sizing: border-box;
     will-change: transform;
     transform-origin: 50% 100%;
-    /* 상단 붉은색/중앙 검정 라인/하단 흰색 + 하이라이트 */
     background:
         radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 35%),
         linear-gradient(to bottom,
             #d61313 0 49%,
             #1a1a1a 49% 51%,
-            /* 검정 분할선 */
             #f7f7f7 51% 100%);
     animation: voltorb-bounce var(--duration) infinite cubic-bezier(.25, .6, .2, 1);
     position: relative;
 }
 
-/* ===== 눈(흰자, 분노형) — ::before / ::after 유지 ===== */
 #section1 .section1Top .section1Css1 .voltorb::before,
 #section1 .section1Top .section1Css1 .voltorb::after{
   content:"";
   position:absolute;
-  top: calc(var(--size) * 0.26);           /* 너무 위로 올라가던 값(0.20) ↓ */
+  top: calc(var(--size) * 0.26);         
   width: calc(var(--size) * 0.26);
   height: calc(var(--size) * 0.26);
   background:#fff;
-  box-shadow: 0 0 0 calc(var(--size) * 0.014) #1a1a1a; /* 외곽선 */
+  box-shadow: 0 0 0 calc(var(--size) * 0.014) #1a1a1a; 
   /* 사선 사다리꼴 */
   clip-path: polygon(0% 22%, 100% 40%, 100% 86%, 0% 68%);
   transform-origin: 50% 50%;
-  z-index: 1;                                /* 흰자 위에 눈동자 올리기 전용 */
+  z-index: 1;                               
 }
 #section1 .section1Top .section1Css1 .voltorb::before{
   left: calc(var(--size) * 0.18);
@@ -98,12 +80,9 @@
     content: "";
 }
 
-/* 일부 브라우저 잡음 방지 */
 #section1 .section1Top .section1Css1 .voltorb>* {
     pointer-events: none;
 }
-
-/* 안전 */
 
 /* 바닥 그림자 */
 #section1 .section1Top .section1Css1 .voltorb-shadow {
@@ -188,4 +167,18 @@
     #section1 .section1Top .section1Css1 .voltorb-shadow {
         animation: none;
     }
+}
+
+/* BoltSmall(svg) 크기만 반응형 */
+#section1 .zap{
+  width: clamp(28px, 4vw, 50px);
+  height: clamp(28px, 4vw, 50px);
+  display: block;
+}
+
+/* 만약 className이 svg에 안 붙고 wrapper에 붙는 구조라면 */
+#section1 .zap svg{
+  width: 100%;
+  height: 100%;
+  display: block;
 }

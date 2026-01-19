@@ -70,7 +70,7 @@
     width: 100%;
     height: 100vh;
     position: absolute;
-    bottom: 0;
+    top: 500px;
     left: 0;
 }
 
@@ -80,4 +80,61 @@
     display: block;
     object-fit: cover;
     pointer-events: none;
+}
+
+
+@media (max-width:1540px) {
+    #headerBottom .headerBottomVideo {
+        object-fit: contain;
+        object-position: top;
+    }
+}
+
+@media (max-width:1279px) {
+    #header {
+        height: 132vh;
+    }
+    #header #headerMain #headerBottom {
+        height: auto;
+    }
+
+}
+@media (max-width: 888px) {
+    #header {
+        height: 100vh;
+    }
+
+    #header #headerMain #headerTop {
+        font-size: 4em;
+        top: 200px;
+    }
+
+    #header #headerMain #headerTop p {
+        line-height: 60px;
+    }
+
+    #header #headerMain #headerTop .slot {
+        --lineH: 60px;
+    }
+        #header #headerMain #headerBottom {
+            top: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    #header {
+        height: 80vh;
+    }
+
+    #header #headerMain .headerPo {
+        font-size: 2em;
+    }
+
+    #header #headerMain #headerTop {
+        font-size: 3em;
+        top: 160px;
+    }
+    #header #headerMain #headerBottom {
+        top: 350px;
+    }
 }
