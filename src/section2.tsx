@@ -242,7 +242,7 @@ function Section2() {
   return (
     <section id="section2" ref={sectionRef}>
       <div className="section2Layout">
-        <img className="mungMoon" src="./section/mung_with_moon.png" alt="뭉이 달에 앉은 모습" />
+        <img className="mungMoon" src="./section/mung_with_moon.jpg" alt="노트북" />
       </div>
 
       <div className="section2Middle">

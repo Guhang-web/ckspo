@@ -2,8 +2,6 @@
 .walk-box {
     width: 20vw;
     height: 20vh;
-    min-width: 240px;
-    min-height: 240px;
 
     position: relative;
     overflow: hidden;

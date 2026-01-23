@@ -6,11 +6,15 @@ import EggSVG from "./CssAni/Egg.SVG";
 import RobotSVG from "./CssAni/RobotSVG";
 import MilkSVG from "./CssAni/MilkSVG";
 import TurtleSVG from "./CssAni/TurtleSVG";
-import VoltorbBounce from "./CssAni/VoltorbBounce";
 import KirbySVG from "./CssAni/kirbySVG";
 import FlyingBirds from "./CssAni/birlSVG";
 import AirpodsSVG from "./CssAni/AirpodsSVG";
+import VoltorbBounce from "./CssAni/VoltorbBounce";
 import BlackHoleSVG from "./CssAni/BlackHoleSVG";
+
+
+import goden from "../public/section/goden.png";
+import goden2 from "../public/section/goden2.png";
 
 const clamp = (n: number, min: number, max: number) =>
   Math.max(min, Math.min(max, n));
@@ -33,7 +37,7 @@ export default function Section1() {
   const voltorbWrapRef = useRef<HTMLDivElement | null>(null);
   const blackholeWrapRef = useRef<HTMLDivElement | null>(null);
 
-  // ✅ sticky
+  //  sticky
   const middleRef = useRef<HTMLDivElement | null>(null);
   const pinRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,13 +50,60 @@ export default function Section1() {
   const tools: readonly ToolItem[] = useMemo(
     () =>
       [
-        { key: "egg", label: "EGG", desc: "The egg character gently bobs.", Visual: EggSVG as VisualComp },
-        { key: "robot", label: "ROBOT", desc: "The boxy robot gently bobs.", Visual: RobotSVG as VisualComp },
-        { key: "milk", label: "MILK", desc: "The milk carton gently bobs.", Visual: MilkSVG as VisualComp },
-        { key: "turtle", label: "TURTLE", desc: "The shy turtle gently bobs.", Visual: TurtleSVG as VisualComp },
-        { key: "kirby", label: "KIRBY", desc: "Kirby Flying Through the Sky", Visual: KirbySVG as VisualComp },
-        { key: "bird", label: "BIRD", desc: "A bird flying freely in the open sky", Visual: FlyingBirds as VisualComp },
-        { key: "airpods", label: "AIRPODS", desc: "Hear the richness. AirPods", Visual: AirpodsSVG as VisualComp },
+        {
+          key: "milk",
+          label: "MILK",
+          desc: "The milk carton gently bobs.",
+          Visual: MilkSVG as VisualComp,
+        },
+        {
+          key: "egg",
+          label: "EGG",
+          desc: "The egg character gently bobs.",
+          Visual: EggSVG as VisualComp,
+        },
+        {
+          key: "robot",
+          label: "ROBOT",
+          desc: "The boxy robot gently bobs.",
+          Visual: RobotSVG as VisualComp,
+        },
+        {
+          key: "turtle",
+          label: "TURTLE",
+          desc: "The shy turtle gently bobs.",
+          Visual: TurtleSVG as VisualComp,
+        },
+        {
+          key: "kirby",
+          label: "KIRBY",
+          desc: "Kirby Flying Through the Sky",
+          Visual: KirbySVG as VisualComp,
+        },
+        {
+          key: "bird",
+          label: "BIRD",
+          desc: "A bird flying freely in the open sky",
+          Visual: FlyingBirds as VisualComp,
+        },
+        {
+          key: "airpods",
+          label: "AIRPODS",
+          desc: "Hear the richness. AirPods",
+          Visual: AirpodsSVG as VisualComp,
+        },
+         {
+        key: "voltorBounce",
+        label: "VOLTORB",
+        desc: "Voltorb does a cute little bounce",
+        Visual: VoltorbBounce as VisualComp,
+      },
+      {
+        key: "blackhole",
+        label: "BLACKHOLE",
+        desc: "The black hole draws everything in",
+        Visual: BlackHoleSVG as VisualComp,
+      },
       ] as const,
     []
   );
@@ -62,7 +113,9 @@ export default function Section1() {
     hoverIndex !== null ? tools[displayIndex]?.Visual ?? null : null;
 
   /**
-   * (1) TOP parallax (vscroll 기반)
+   * TOP parallax (vscroll 기반)
+   * - 기존 Voltorb/BlackHole 자리에 들어간 이미지(goden, goden2)가
+   *   동일하게 --s1-voltorb-y / --s1-blackhole-y 변수를 통해 움직이게 유지
    */
   useEffect(() => {
     const sectionEl = sectionRef.current;
@@ -87,10 +140,17 @@ export default function Section1() {
       const raw = (latestY - start) / (end - start);
       const t = clamp(raw, 0, 1);
 
+      // smoothstep
       const eased = t * t * (3 - 2 * t);
 
-      voltorbWrapRef.current?.style.setProperty("--s1-voltorb-y", `${-eased * VOL_MAX}px`);
-      blackholeWrapRef.current?.style.setProperty("--s1-blackhole-y", `${-eased * BH_MAX}px`);
+      voltorbWrapRef.current?.style.setProperty(
+        "--s1-voltorb-y",
+        `${-eased * VOL_MAX}px`
+      );
+      blackholeWrapRef.current?.style.setProperty(
+        "--s1-blackhole-y",
+        `${-eased * BH_MAX}px`
+      );
     };
 
     const schedule = () => {
@@ -115,12 +175,14 @@ export default function Section1() {
     };
   }, []);
 
+  /**
+   *  middle pin: middle 내부에서 pinRef가 화면 중앙에 고정되도록 top 계산
+   */
   useEffect(() => {
     const middle = middleRef.current;
     const pin = pinRef.current;
     if (!middle || !pin) return;
 
-    // pin은 middle 기준 absolute
     pin.style.position = "absolute";
     pin.style.willChange = "top";
 
@@ -148,12 +210,10 @@ export default function Section1() {
     const onVScroll = () => schedule();
     const onResize = () => schedule();
 
-    // 크기 바뀌면 재계산
     const ro = new ResizeObserver(() => schedule());
     ro.observe(middle);
     ro.observe(pin);
 
-    // 초기 1회
     apply();
 
     window.addEventListener("vscroll", onVScroll as EventListener);
@@ -168,7 +228,7 @@ export default function Section1() {
   }, []);
 
   /**
-    activeIndex: pin과 가장 가까운 리스트 아이템 활성화
+   * (3) activeIndex: pin과 가장 가까운 리스트 아이템 활성화
    */
   useEffect(() => {
     const pin = pinRef.current;
@@ -236,32 +296,57 @@ export default function Section1() {
       <div className="section1Top">
         <div className="section1Css1" ref={voltorbWrapRef}>
           <div className="bolt-pos">
-            <VoltorbBounce/>
+            <img
+              className="goden"
+              src={goden}
+              alt="goden"
+              draggable={false}
+            />
           </div>
         </div>
 
         <div className="section1Css2" ref={blackholeWrapRef}>
-          <BlackHoleSVG />
+          <img
+            className="goden"
+            src={goden2}
+            alt="goden2"
+            draggable={false}
+          />
         </div>
       </div>
 
       <div className="section1Middle" ref={middleRef}>
-        <div className={`section1Layout ${DisplayVisual ? "is-visual" : ""}`} ref={pinRef}>
-          <img className="mungLayout" src="./section/mungYa.png" alt="뭉 웃는모습" />
-          <div className={`s1VisualStage ${DisplayVisual ? "is-on" : ""}`} aria-hidden="true">
+        <div
+          className={`section1Layout ${DisplayVisual ? "is-visual" : ""}`}
+          ref={pinRef}
+        >
+          <img
+            className="mungLayout"
+            src="./section/mungYa.png"
+            alt="뭉 웃는모습"
+          />
+
+          <div
+            className={`s1VisualStage ${DisplayVisual ? "is-on" : ""}`}
+            aria-hidden="true"
+          >
             {DisplayVisual ? <DisplayVisual /> : null}
           </div>
         </div>
 
         <div className="introduce">
           <p className="introText">
-            지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로 운영과 고객 경험을 쌓았고,
+            지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로
+            운영과 고객 경험을 쌓았고,
             <br />
-            퇴사 후 <span className="accent">1년</span> Frontend를 집중 학습했습니다.
+            퇴사 후 <span className="accent">1년</span> Frontend를 집중
+            학습했습니다.
             <br />
-            <span className="accent">2025.04 ~ 25.12.31</span> 회사 운영팀에서 QA로 일하며 실행력을 더하였습니다.
+            <span className="accent">2025.04 ~ 25.12.31</span> 회사 운영팀에서
+            QA로 일하며 실행력을 더하였습니다.
             <br />
-            사용자 관점으로 결과를 만드는<strong> Junior Frontend Developer</strong>{" "}
+            사용자 관점으로 결과를 만드는<strong> Junior Frontend
+              Developer</strong>{" "}
             <strong>최광서</strong>입니다.
           </p>
         </div>

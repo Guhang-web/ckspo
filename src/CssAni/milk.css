@@ -1,8 +1,6 @@
 /* ── 컨테이너: 요청 규격 + 확실한 정사각 ── */
 .milkBox {
   width: 20vw;
-  min-width: 240px;
-  min-height: 240px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -85,27 +83,6 @@
   font: 700 12px/1 "Inter", system-ui, -apple-system, sans-serif;
   fill: var(--text);
 }
-
-/* 팔다리 */
-.milkArm {
-  fill: none;
-}
-
-.milkLeg {
-  fill: var(--line);
-}
-
-.milkEye {
-  fill: var(--line);
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: blink1 3.6s infinite ease-in-out;
-}
-
-.milkMouth {
-  fill: none;
-}
-
 /* 전체 둥실 */
 .milkGroup {
   transform-origin: 100px 150px;

@@ -8,16 +8,16 @@
 }
 
 #section2 .section2Layout {
-    width: 300px;
+    width: 450px;
     height: auto;
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 #section2 .section2Layout .mungMoon {
-    width: 300px;
+    width: 100%;
 }
 
 /* section2Middle */
@@ -155,15 +155,21 @@
     #section2 .section2Middle .toolCompetency {
         font-size: 0;
     }
+
     #section2 .section2Middle .section2Tool {
-    left: 0;
+        left: 0;
     }
 }
 
 @media (max-width:640px) {
     #section2 {
-    height: 134vh;
-}
+        height: 134vh;
+    }
+
+    #section2 .section2Layout {
+        width: 320px;
+    }
+
     #section2 .section2Middle .listTool {
         font-size: clamp(24px, 10vw, 2em);
     }
@@ -183,5 +189,12 @@
 @media (max-width:420px) {
     #section2 .section2Middle .listTool {
         font-size: clamp(12px, 4vw, 20px);
+    }
+}
+
+@media (max-height: 780px) {
+    #section2 {
+        margin-top: -100px;
+        height: 180vh;
     }
 }

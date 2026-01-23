@@ -9,8 +9,6 @@ export default function AirpodsSVG() {
       className="airpods1"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* 배경 */}
-      <rect width="100%" height="100%" fill="#0f0c0cff" />
 
       <defs>
         {/* 본체 그라디언트 */}

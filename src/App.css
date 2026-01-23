@@ -5,6 +5,7 @@ html {
 body {
   overflow: hidden;
   overscroll-behavior: none;
+  font-family: "Bodoni Moda", serif;
 }
 
 /* ✅ 가상 스크롤 뷰포트 */

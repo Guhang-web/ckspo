@@ -6,12 +6,11 @@ export default function MilkSVG() {
     <div className="milkBox" aria-label="cute milk carton animation">
       <svg
         className="milkSVG"
-        viewBox="0 0 200 300"
+        viewBox="0 0 200 200"
         preserveAspectRatio="xMidYMid meet"
         role="img"
       >
         <defs>
-          {/* 우윳물 클리핑(몸통 안에서만 보이도록) */}
           <clipPath id="milk-clip">
             <rect x="56" y="82" width="88" height="70" rx="8" />
           </clipPath>
@@ -48,21 +47,6 @@ export default function MilkSVG() {
           <g clipPath="url(#label-clip)">
             <rect x="60" y="120" width="80" height="24" rx="6" className="labelBg" />
             <text x="100" y="136" textAnchor="middle" className="labelText">Milk</text>
-          </g>
-
-          {/* 팔/다리 */}
-          <g className="limb">
-            <path d="M56 110 Q 40 112 42 124" className="milkArm" />
-            <path d="M144 110 Q 160 112 158 124" className="milkArm" />
-            <rect x="80" y="166" width="10" height="10" rx="3" className="milkLeg" />
-            <rect x="110" y="166" width="10" height="10" rx="3" className="milkLeg" />
-          </g>
-
-          {/* 얼굴 */}
-          <g className="milkFace">
-            <circle cx="88" cy="103" r="3.5" className="milkEye" />
-            <circle cx="112" cy="103" r="3.5" className="milkEye" />
-            <path d="M94 112 Q100 116 106 112" className="milkMouth" />
           </g>
         </g>
       </svg>

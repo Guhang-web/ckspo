@@ -1,8 +1,6 @@
 /* 컨테이너: 네가 준 규격 그대로 */
 .robotBox{
   width: 20vw;
-  min-width: 240px;
-  min-height: 240px;
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;

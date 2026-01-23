@@ -1,6 +1,6 @@
 /* 래퍼: 바닥에서 점프 */
-#section1 .section1Top .section1Css1 .voltorb-wrap {
-    --size: 24.2vw;
+#section1 .voltorb-wrap {
+    --size:clamp(150px, 20vw, 240px);;
     --jump-1: 120px;
     --jump-2: 60px;
     --duration: 1.6s;
@@ -12,7 +12,7 @@
 }
 
 /* 본체 */
-#section1 .section1Top .section1Css1 .voltorb {
+#section1  .voltorb {
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
@@ -30,8 +30,8 @@
     position: relative;
 }
 
-#section1 .section1Top .section1Css1 .voltorb::before,
-#section1 .section1Top .section1Css1 .voltorb::after{
+#section1  .voltorb::before,
+#section1  .voltorb::after{
   content:"";
   position:absolute;
   top: calc(var(--size) * 0.26);         
@@ -44,17 +44,17 @@
   transform-origin: 50% 50%;
   z-index: 1;                               
 }
-#section1 .section1Top .section1Css1 .voltorb::before{
+#section1 .voltorb::before{
   left: calc(var(--size) * 0.18);
   transform: rotate(-3deg);
 }
-#section1 .section1Top .section1Css1 .voltorb::after{
+#section1 .voltorb::after{
   right: calc(var(--size) * 0.08);
   transform: scaleX(-1) rotate(-3deg);
 }
 
 /* ===== 검은 눈동자(2번 이미지 느낌) — 내부 i 요소 ===== */
-#section1 .section1Top .section1Css1 .voltorb .pupil{
+#section1 .voltorb .pupil{
   position:absolute;
   top: calc(var(--size) * 0.38);
   width: calc(var(--size) * 0.11);
@@ -66,26 +66,26 @@
   z-index: 2;                /* 흰자 위에 오도록 */
   pointer-events: none;
 }
-#section1 .section1Top .section1Css1 .voltorb .pupil--l{
+#section1 .voltorb .pupil--l{
   left: calc(var(--size) * 0.30);
   transform: rotate(90deg);
 }
-#section1 .section1Top .section1Css1 .voltorb .pupil--r{
+#section1 .voltorb .pupil--r{
   right: calc(var(--size) * 0.20);
   transform: scaleX(-1) rotate(90deg);
 }
 
 /* 방지용 */
-#section1 .section1Top .section1Css1 .voltorb::marker {
+#section1 .voltorb::marker {
     content: "";
 }
 
-#section1 .section1Top .section1Css1 .voltorb>* {
+#section1  .voltorb>* {
     pointer-events: none;
 }
 
 /* 바닥 그림자 */
-#section1 .section1Top .section1Css1 .voltorb-shadow {
+#section1 .voltorb-shadow {
     width: calc(var(--size) * 0.5);
     height: calc(var(--size) * 0.12);
     border-radius: 50%;
@@ -94,8 +94,7 @@
     transform-origin: 50% 50%;
     will-change: transform, opacity;
     animation: voltorb-shadow var(--duration) infinite ease-out;
-    margin-bottom: 6px;
-    /* 살짝 띄워 바닥 느낌 */
+    margin-bottom: 20px;
 }
 
 /* 점프 + 스쿼시/스트레치 */
@@ -163,8 +162,8 @@
 /* 모션 줄이기 환경 대응 */
 @media (prefers-reduced-motion: reduce) {
 
-    #section1 .section1Top .section1Css1 .voltorb,
-    #section1 .section1Top .section1Css1 .voltorb-shadow {
+    #section1  .voltorb,
+    #section1 .voltorb-shadow {
         animation: none;
     }
 }
@@ -176,7 +175,6 @@
   display: block;
 }
 
-/* 만약 className이 svg에 안 붙고 wrapper에 붙는 구조라면 */
 #section1 .zap svg{
   width: 100%;
   height: 100%;

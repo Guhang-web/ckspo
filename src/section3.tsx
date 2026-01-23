@@ -206,7 +206,6 @@ function Section3() {
               barRefs.current[box.key] = el;
             }}
             className={`poporbar ${box.navClass}`}
-            // bar가 포인터 이벤트를 먹으면 enter/move가 미묘하게 끊기는 경우가 있어서 차단
             aria-hidden="true"
           >
             <p>{box.label}</p>

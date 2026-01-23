@@ -1,19 +1,17 @@
 /* 박스 크기: 네가 준 규격에 맞춤 */
 .eggBox{
   width: 20vw;
-  min-width: 240px;
-  min-height: 240px;
-  aspect-ratio: 1 / 1;           /* 정사각 박스 보장 */
+  aspect-ratio: 1 / 1;          
   display: grid;
   place-items: center;
-  background: transparent;       /* 필요하면 색 넣기 */
+  background: transparent;      
 }
 
 /* 색상/두께 토큰 */
 :root{
-  --egg-fill: #fff7e6;           /* 달걀 바탕 */
-  --egg-line: #6f5b3e;           /* 외곽선 */
-  --egg-shadow: rgba(0,0,0,.12); /* 바닥 그림자 */
+  --egg-fill: #fff7e6;          
+  --egg-line: #6f5b3e;           
+  --egg-shadow: rgba(0,0,0,.12); 
   --egg-blush: #ffb3b3;
   --egg-shine: rgba(255,255,255,.75);
 }
