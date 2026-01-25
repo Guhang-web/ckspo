@@ -1,4 +1,3 @@
-import React from "react";
 import "./milk.css";
 
 export default function MilkSVG() {

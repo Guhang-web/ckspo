@@ -1,4 +1,3 @@
-import React from "react";
 import "./robot.css";
 
 export default function RobotSVG() {

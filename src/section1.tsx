@@ -2,6 +2,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./section1.css";
 
+import Americano from "./CssAni/americano";
+import LatteArt from "./CssAni/latteArt";
 import EggSVG from "./CssAni/Egg.SVG";
 import RobotSVG from "./CssAni/RobotSVG";
 import MilkSVG from "./CssAni/MilkSVG";
@@ -11,8 +13,6 @@ import FlyingBirds from "./CssAni/birlSVG";
 import AirpodsSVG from "./CssAni/AirpodsSVG";
 import VoltorbBounce from "./CssAni/VoltorbBounce";
 import BlackHoleSVG from "./CssAni/BlackHoleSVG";
-
-
 import goden from "../public/section/goden.png";
 import goden2 from "../public/section/goden2.png";
 
@@ -51,27 +51,39 @@ export default function Section1() {
     () =>
       [
         {
+          key: "americano",
+          label: "AMERICANO",
+          desc: "A refreshing iced Americano",
+          Visual: Americano as VisualComp,
+        },
+        {
+          key: "latteArt",
+          label: "LATTEART",
+          desc: "",
+          Visual: LatteArt as VisualComp,
+        },
+        {
           key: "milk",
           label: "MILK",
-          desc: "The milk carton gently bobs.",
+          desc: "The milk carton gently bobs",
           Visual: MilkSVG as VisualComp,
         },
         {
           key: "egg",
           label: "EGG",
-          desc: "The egg character gently bobs.",
+          desc: "The egg character gently bobs",
           Visual: EggSVG as VisualComp,
         },
         {
           key: "robot",
           label: "ROBOT",
-          desc: "The boxy robot gently bobs.",
+          desc: "The boxy robot gently bobs",
           Visual: RobotSVG as VisualComp,
         },
         {
           key: "turtle",
           label: "TURTLE",
-          desc: "The shy turtle gently bobs.",
+          desc: "The shy turtle gently bobs",
           Visual: TurtleSVG as VisualComp,
         },
         {

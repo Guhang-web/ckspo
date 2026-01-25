@@ -1,0 +1,34 @@
+/* americano.css */
+.americano {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  overflow: hidden; /* 혹시 모를 튐 방지 */
+}
+
+.americanoSvg {
+  width: min(100%, 320px); /* 최대 크기 캡 */
+  height: auto;
+  max-height: 100%;
+  display: block;
+}
+/* SVG 내부 path에 CSS transform 잘 먹게 하는 핵심 옵션들 */
+.americanoSvg .ice {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ice-bob 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.americanoSvg .ice1 { animation-delay: 0.58s; }
+.americanoSvg .ice2 { animation-delay: 0.32s; }
+.americanoSvg .ice3 { animation-delay: 0.1s; }
+
+@keyframes ice-bob {
+  0%, 100% { transform: translateY(0); }
+  45%      { transform: translateY(30px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .americanoSvg .ice { animation: none; }
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import "./voltorb.css"; 
 import BoltSmall from "./BoltSmall";
 

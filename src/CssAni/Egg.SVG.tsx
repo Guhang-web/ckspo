@@ -1,4 +1,3 @@
-import React from "react";
 import "./egg.css";
 
 export default function EggSVG() {
