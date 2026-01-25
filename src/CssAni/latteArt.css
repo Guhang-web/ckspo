@@ -12,6 +12,7 @@
   width: min(320px, 100%);
   height: auto;
   display: block;
+  margin-top: 20px;
 }
 
 /* “선 그리기” 핵심: dashoffset을 길이만큼 숨겼다가 0으로 */
