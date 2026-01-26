@@ -4,26 +4,21 @@ import "./footer.css";
 
 type HoverSwapTextProps =
   | {
-      as: "a";
-      className?: string;
-      href: string;
-      target?: string;
-      rel?: string;
-      children: string;
-    }
+    as: "a";
+    className?: string;
+    href: string;
+    target?: string;
+    rel?: string;
+    children: string;
+  }
   | {
-      as?: "p";
-      className?: string;
-      children: string;
-    };
+    as?: "p";
+    className?: string;
+    children: string;
+  };
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
-/**
- * ✅ 가상 스크롤(App의 targetYRef)을 직접 못 만지므로,
- * Nav에서 하던 방식처럼 "vscroll:to" 이벤트로 App에게 점프 요청한다.
- * (App.tsx에 vscroll:to 리스너가 이미 있어야 함)
- */
 function vscrollToId(id: string) {
   const targetEl = document.getElementById(id) as HTMLElement | null;
   const contentEl = document.querySelector(".vs__content") as HTMLElement | null;
@@ -201,10 +196,10 @@ function Footer() {
                 <HoverSwapText as="p">Email : dacjj123@naver.com</HoverSwapText>
               </li>
               <li>
-                {/* ✅ 외부 링크는 기본 동작 유지 */}
+                {/*  외부 링크는 기본 동작 유지 */}
                 <HoverSwapText
                   as="a"
-                  href="https://github.com/Guhang-web"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -221,7 +216,18 @@ function Footer() {
                 <HoverSwapText as="p">PRIVACY</HoverSwapText>
               </li>
               <li>
-                <HoverSwapText as="p">This site does not collect personal data.</HoverSwapText>
+                <p className="hs legal_p2">
+                  <span className="hs__inner" aria-hidden="true">
+                    <span className="hs__text">
+                      This site does not collect <span className="legal_break">personal data.</span>
+                    </span>
+                    <span className="hs__text hs__text--clone">
+                      This site does not collect <span className="legal_break">personal data.</span>
+                    </span>
+                  </span>
+
+                  <span className="sr-only">This site does not collect personal data.</span>
+                </p>
               </li>
             </ul>
           </div>

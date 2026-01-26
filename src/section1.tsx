@@ -59,7 +59,7 @@ export default function Section1() {
         {
           key: "latteArt",
           label: "LATTEART",
-          desc: "",
+          desc: "A pretty heart in a cafe latte",
           Visual: LatteArt as VisualComp,
         },
         {

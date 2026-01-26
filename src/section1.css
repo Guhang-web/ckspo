@@ -340,7 +340,7 @@ p {
 }
 
 @media (max-width:725px) {
-    
+
     #section1 .section1Bottom {
         top: clamp(300px, 30%, 600px);
     }
@@ -349,20 +349,36 @@ p {
         font-size: clamp(10px, 2vw, 16px);
     }
 }
-@media (max-width:680px){
-#section1 .section1Bottom .listItem {
-    font-size: clamp(10px, 2vw, 16px);
-}
-#section1 .section1Middle .section1Layout {
-    width: clamp(180px, 20vw, 360px);
+
+@media (max-width:680px) {
+    #section1 .section1Bottom .listItem {
+        font-size: clamp(10px, 2vw, 16px);
+    }
+
+    #section1 .section1Middle .section1Layout {
+        width: clamp(180px, 20vw, 360px);
+    }
+#section1 .bolt-pos1 {
+    --bx: calc(var(--size) * -0.3);
+    --by: calc(var(--size) * -0.5);
 }
 
+#section1 .bolt-pos2 {
+    --bx: calc(var(--size) * 0.42);
+    --by: calc(var(--size) * 0.0);
+}
+
+#section1 .bolt-pos3 {
+    --bx: calc(var(--size) * 0.75);
+    --by: calc(var(--size) * -0.58);
+}
 }
 
 @media (max-height: 780px) {
     #section1 .section1Middle .introduce {
         top: 100px;
     }
+
     .introduce .introText {
         font-size: clamp(12px, 2vw, 16px);
     }
