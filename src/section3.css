@@ -123,3 +123,13 @@
     top: -50px;
 }
 }
+
+@media (max-height:740px){
+    #section3 .poporList .lotteCultureworks {
+    top: 0;
+}
+
+#section3 .poporList .amio {
+    top: 0px;
+}
+}

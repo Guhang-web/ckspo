@@ -267,11 +267,6 @@
         overflow: hidden;
 
     }
-
-    #footer .footer_box .footer_boxDown .footer_nav ul li {
-        font-size: 11px;
-    }
-
     .legal_p2 .legal_break {
         display: block;
     }
@@ -281,4 +276,7 @@
     #footer .footer_box .footer_boxDown .footer_nav ul {
         left: 5px;
     }
+    #footer .footer_box .footer_boxDown .footer_nav ul li {
+    font-size: 9px;
+}
 }
