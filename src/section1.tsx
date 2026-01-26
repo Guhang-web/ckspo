@@ -52,70 +52,73 @@ export default function Section1() {
       [
         {
           key: "americano",
-          label: "AMERICANO",
-          desc: "A refreshing iced Americano",
+          label: "Cafe Employee",
+          desc: "2017.01 - 2028.04",
           Visual: Americano as VisualComp,
         },
         {
-          key: "latteArt",
-          label: "LATTEART",
-          desc: "A pretty heart in a cafe latte",
-          Visual: LatteArt as VisualComp,
-        },
-        {
           key: "milk",
-          label: "MILK",
-          desc: "The milk carton gently bobs",
+          label: "Cafe Deputy Manager",
+          desc: "2020.01 - 2021.04",
           Visual: MilkSVG as VisualComp,
         },
         {
-          key: "egg",
-          label: "EGG",
-          desc: "The egg character gently bobs",
-          Visual: EggSVG as VisualComp,
+          key: "latteArt",
+          label: "Cafe Manager",
+          desc: "2021.01 - 2025.04",
+          Visual: LatteArt as VisualComp,
         },
-        {
-          key: "robot",
-          label: "ROBOT",
-          desc: "The boxy robot gently bobs",
-          Visual: RobotSVG as VisualComp,
-        },
-        {
-          key: "turtle",
-          label: "TURTLE",
-          desc: "The shy turtle gently bobs",
-          Visual: TurtleSVG as VisualComp,
-        },
-        {
-          key: "kirby",
-          label: "KIRBY",
-          desc: "Kirby Flying Through the Sky",
-          Visual: KirbySVG as VisualComp,
-        },
-        {
-          key: "bird",
-          label: "BIRD",
-          desc: "A bird flying freely in the open sky",
-          Visual: FlyingBirds as VisualComp,
-        },
-        {
-          key: "airpods",
-          label: "AIRPODS",
-          desc: "Hear the richness. AirPods",
-          Visual: AirpodsSVG as VisualComp,
-        },
-         {
-        key: "voltorBounce",
-        label: "VOLTORB",
-        desc: "Voltorb does a cute little bounce",
-        Visual: VoltorbBounce as VisualComp,
-      },
+        
       {
         key: "blackhole",
-        label: "BLACKHOLE",
+        label: "QA",
         desc: "The black hole draws everything in",
         Visual: BlackHoleSVG as VisualComp,
       },
+        
+        {
+          key: "airpods",
+          label: "Design Study",
+          desc: "Hear the richness. AirPods",
+          Visual: AirpodsSVG as VisualComp,
+        },
+        {
+          key: "robot",
+          label: "Front-end Study",
+          desc: "The boxy robot gently bobs",
+          Visual: RobotSVG as VisualComp,
+        },
+        
+        // {
+        //   key: "egg",
+        //   label: "EGG",
+        //   desc: "The egg character gently bobs",
+        //   Visual: EggSVG as VisualComp,
+        // },
+      //   {
+      //     key: "turtle",
+      //     label: "TURTLE",
+      //     desc: "The shy turtle gently bobs",
+      //     Visual: TurtleSVG as VisualComp,
+      //   },
+      //   {
+      //     key: "kirby",
+      //     label: "KIRBY",
+      //     desc: "Kirby Flying Through the Sky",
+      //     Visual: KirbySVG as VisualComp,
+      //   },
+      //   {
+      //     key: "bird",
+      //     label: "BIRD",
+      //     desc: "A bird flying freely in the open sky",
+      //     Visual: FlyingBirds as VisualComp,
+      //   },
+      //    {
+      //   key: "voltorBounce",
+      //   label: "VOLTORB",
+      //   desc: "Voltorb does a cute little bounce",
+      //   Visual: VoltorbBounce as VisualComp,
+      // },
       ] as const,
     []
   );

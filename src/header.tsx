@@ -63,10 +63,8 @@ function Header() {
       <div id="headerMain">
         <h1 className="headerPo">ChoiKwangSeo</h1>
 
-        <div id="headerTop">
-          <p className="p-1">INTEGRITY</p>
-          <p className="p-2">CONSISTENCY</p>
 
+        <div id="headerTop">
           <div
             className="slot"
             aria-live="polite"
@@ -79,6 +77,10 @@ function Header() {
               <p className="p-6">PERFORMANCE</p>
             </div>
           </div>
+          <p className="p-1">FRONT-END</p>
+          <p className="p-2">DEVELOPER</p>
+
+          
         </div>
 
         <div id="headerBottom">
@@ -90,7 +92,7 @@ function Header() {
             playsInline
             preload="metadata"
           >
-            <source src="/Mung.mp4" type="video/mp4" />
+            <source src="https://refad-image.s3.ap-northeast-2.amazonaws.com/jobkorea/keyvisual.mp4" type="video/mp4" />
             Sorry, your browser doesn’t support embedded videos.
           </video>
         </div>

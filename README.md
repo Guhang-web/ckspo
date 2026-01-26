@@ -1,3 +1,22 @@
+## 260126
+
+전체색상만 -> 파란색 비디오에서 가져와서
+처음에 커피로 시작
+https://fonts.adobe.com/fonts/ivypresto-display
+
+한글을 프리텐다드
+
+맨마지막
+
+폰/ 이메일 /깃헙
+
+버셀 회원가입 // 깃헙(settings -> pages -> main (save))
+
+자소서 이력서
+
+성장과정 , 성격의장단점, 지원동기, 입사후포부
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
