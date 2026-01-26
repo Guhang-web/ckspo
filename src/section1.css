@@ -131,7 +131,7 @@ p {
 }
 
 .introduce .introText {
-    font-family: "Bodoni Moda", serif;
+     font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
     font-size: clamp(20px, 2vw, 20px);
     font-weight: 700;
     line-height: 1.5;
@@ -158,6 +158,7 @@ p {
     width: 100%;
     height: auto;
     padding-bottom: 0;
+    font-family: "Daeojamjil", "TheJamsil", system-ui, -apple-system, sans-serif;
 }
 
 #section1 .section1Bottom .listItem {
@@ -197,73 +198,6 @@ p {
     font-size: 28px;
 }
 
-/*  section1 번개 */
-.zap {
-    color: #ffd400;
-    /* 노란색 */
-    filter: drop-shadow(0 0 6px rgba(255, 212, 0, .7));
-}
-
-.zap-anim {
-    animation: zapBlink .9s infinite steps(2, end),
-        zapFloat 2.4s infinite ease-in-out;
-}
-
-@keyframes zapBlink {
-
-    0%,
-    45% {
-        opacity: 1
-    }
-
-    50%,
-    55% {
-        opacity: .5
-    }
-
-    60%,
-    100% {
-        opacity: 1
-    }
-}
-
-@keyframes zapFloat {
-
-    0%,
-    100% {
-        transform: translateY(0)
-    }
-
-    50% {
-        transform: translateY(-6px)
-    }
-}
-
-#section1 .bolt-pos1,
-#section1 .bolt-pos2,
-#section1 .bolt-pos3 {
-    position: absolute;
-    left: 30%;
-    bottom: var(--size);
-    transform: translate(calc(-50% + var(--bx)), calc(var(--by) * -1));
-    pointer-events: none;
-    z-index: 3;
-}
-
-#section1 .bolt-pos1 {
-    --bx: calc(var(--size) * -0.3);
-    --by: calc(var(--size) * 0.00);
-}
-
-#section1 .bolt-pos2 {
-    --bx: calc(var(--size) * 0.42);
-    --by: calc(var(--size) * 0.29);
-}
-
-#section1 .bolt-pos3 {
-    --bx: calc(var(--size) * 0.95);
-    --by: calc(var(--size) * -0.18);
-}
 
 /* wheel step 이동용 (CSS 변수 기반) */
 #section1 .section1Top .section1Css1 {
@@ -358,20 +292,6 @@ p {
     #section1 .section1Middle .section1Layout {
         width: clamp(180px, 20vw, 360px);
     }
-#section1 .bolt-pos1 {
-    --bx: calc(var(--size) * -0.3);
-    --by: calc(var(--size) * -0.5);
-}
-
-#section1 .bolt-pos2 {
-    --bx: calc(var(--size) * 0.42);
-    --by: calc(var(--size) * 0.0);
-}
-
-#section1 .bolt-pos3 {
-    --bx: calc(var(--size) * 0.75);
-    --by: calc(var(--size) * -0.58);
-}
 }
 
 @media (max-height: 780px) {

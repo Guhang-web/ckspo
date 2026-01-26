@@ -27,7 +27,7 @@ function Header() {
 
       const progress = clamp((latestY - start) / range, 0, 1);
 
-      const nextStep = Math.min(3, Math.floor(progress * 6));
+      const nextStep = Math.min(3, Math.floor(progress * 8));
 
       setStep((prev) => (prev === nextStep ? prev : nextStep));
     };

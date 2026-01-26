@@ -7,15 +7,14 @@ body {
   overscroll-behavior: none;
   font-family: "Bodoni Moda", serif;
 }
-
-/* ✅ 가상 스크롤 뷰포트 */
+/*  가상 스크롤 뷰포트 */
 .vs {
   position: fixed;
   inset: 0;
   overflow: hidden;
 }
 
-/* ✅ 움직일 실제 컨텐츠 */
+/*  움직일 실제 컨텐츠 */
 .vs__content {
   will-change: transform;
   transform: translate3d(0, 0, 0);

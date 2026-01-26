@@ -4,14 +4,9 @@ import "./section1.css";
 
 import Americano from "./CssAni/americano";
 import LatteArt from "./CssAni/latteArt";
-import EggSVG from "./CssAni/Egg.SVG";
 import RobotSVG from "./CssAni/RobotSVG";
 import MilkSVG from "./CssAni/MilkSVG";
-import TurtleSVG from "./CssAni/TurtleSVG";
-import KirbySVG from "./CssAni/kirbySVG";
-import FlyingBirds from "./CssAni/birlSVG";
 import AirpodsSVG from "./CssAni/AirpodsSVG";
-import VoltorbBounce from "./CssAni/VoltorbBounce";
 import BlackHoleSVG from "./CssAni/BlackHoleSVG";
 import goden from "../public/section/goden.png";
 import goden2 from "../public/section/goden2.png";
@@ -53,72 +48,40 @@ export default function Section1() {
         {
           key: "americano",
           label: "Cafe Employee",
-          desc: "2017.01 - 2028.04",
+          desc: "2017.01 - 2018.12()",
           Visual: Americano as VisualComp,
         },
         {
           key: "milk",
           label: "Cafe Deputy Manager",
-          desc: "2020.01 - 2021.04",
+          desc: "2019.01 - 2021.01()",
           Visual: MilkSVG as VisualComp,
         },
         {
           key: "latteArt",
           label: "Cafe Manager",
-          desc: "2021.01 - 2025.04",
+          desc: "2021.02 - 2025.04()",
           Visual: LatteArt as VisualComp,
         },
-        
-      {
-        key: "blackhole",
-        label: "QA",
-        desc: "The black hole draws everything in",
+        {
+          key: "blackhole",
+          label: "QA",
+          desc: "2025-04 - 2025.12()",
         Visual: BlackHoleSVG as VisualComp,
       },
         
         {
           key: "airpods",
           label: "Design Study",
-          desc: "Hear the richness. AirPods",
+          desc: "2024.10 - 2024.12()",
           Visual: AirpodsSVG as VisualComp,
         },
         {
           key: "robot",
           label: "Front-end Study",
-          desc: "The boxy robot gently bobs",
+          desc: "2024.10 - 2026.01()",
           Visual: RobotSVG as VisualComp,
         },
-        
-        // {
-        //   key: "egg",
-        //   label: "EGG",
-        //   desc: "The egg character gently bobs",
-        //   Visual: EggSVG as VisualComp,
-        // },
-      //   {
-      //     key: "turtle",
-      //     label: "TURTLE",
-      //     desc: "The shy turtle gently bobs",
-      //     Visual: TurtleSVG as VisualComp,
-      //   },
-      //   {
-      //     key: "kirby",
-      //     label: "KIRBY",
-      //     desc: "Kirby Flying Through the Sky",
-      //     Visual: KirbySVG as VisualComp,
-      //   },
-      //   {
-      //     key: "bird",
-      //     label: "BIRD",
-      //     desc: "A bird flying freely in the open sky",
-      //     Visual: FlyingBirds as VisualComp,
-      //   },
-      //    {
-      //   key: "voltorBounce",
-      //   label: "VOLTORB",
-      //   desc: "Voltorb does a cute little bounce",
-      //   Visual: VoltorbBounce as VisualComp,
-      // },
       ] as const,
     []
   );

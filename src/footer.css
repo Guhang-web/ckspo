@@ -109,19 +109,19 @@
 }
 
 #footer .footer_box .footer_boxDown .downLeft {
-    background: linear-gradient(180deg, #ED694F 0%, #EC674C 100%);
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+  background: linear-gradient(180deg, #0B2A6F 0%, #0A3A8F 100%);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 #footer .footer_box .footer_boxDown .downCenter {
-    background: linear-gradient(180deg, #F17E64 0%, #F17B62 100%);
+  background: linear-gradient(180deg, #1D4ED8 0%, #2563EB 100%);
 }
 
 #footer .footer_box .footer_boxDown .downRight {
-    background: linear-gradient(180deg, #F6927B 0%, #F58F78 100%);
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+  background: linear-gradient(180deg, #4F8DF7 0%, #6AA6FF 100%);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 #footer .footer_box .footer_boxDown .footer_nav h6 {
@@ -139,7 +139,6 @@
 
 #footer .footer_box .footer_boxDown .footer_nav ul li {
     padding: 0;
-    line-height: 11px;
     font-size: 24px;
     line-height: 1.5;
 }
@@ -170,7 +169,7 @@
     position: relative;
     height: 1em;
     overflow: hidden;
-    line-height: 1em;
+    line-height: 0.8em;
     display: block;
     width: max-content;
 }
@@ -197,7 +196,7 @@
 
 #footer .footer_box .footer_boxDown .footer_nav ul li .hs:hover .hs__text {
     transition: transform 260ms cubic-bezier(.2, .7, .2, 1);
-    transform: translateY(-100%);
+    transform: translateY(-127%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -207,7 +206,7 @@
     }
 }
 
-/* ✅ 기본: footer_nav 3개가 아래에서 위로 올라오며 등장 준비 */
+/* 기본: footer_nav 3개가 아래에서 위로 올라오며 등장 준비 */
 #footer .footer_box .footer_boxDown .footer_nav {
     opacity: 0;
     transform: translateY(18px);

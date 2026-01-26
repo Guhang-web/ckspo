@@ -35,6 +35,7 @@
 #section2 .section2Middle .section2Middle_p {
     font-size: 18px;
     line-height: 30px;
+     font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
 }
 
 #section2 .section2Middle .section2Tool {
@@ -160,12 +161,17 @@
         left: 0;
     }
 }
+@media (max-width:880px) {
+    #section2 {
+        margin-top: -400px;
+    }
+}
 
 @media (max-width:640px) {
     #section2 {
         height: 134vh;
     }
-
+    
     #section2 .section2Layout {
         width: 320px;
     }

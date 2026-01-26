@@ -156,78 +156,28 @@ function Footer() {
 
         <div className={`footer_boxDown ${inView ? "is-inview" : ""}`}>
           <div className="footer_nav downLeft">
-            <h6>Index</h6>
+            <h6>Phone</h6>
             <ul>
               <li>
-                <HoverSwapText as="a" href="#header">
-                  Home
-                </HoverSwapText>
-              </li>
-              <li>
-                <HoverSwapText as="a" href="#section1">
-                  About
-                </HoverSwapText>
-              </li>
-              <li>
-                <HoverSwapText as="a" href="#section2">
-                  Lab
-                </HoverSwapText>
-              </li>
-              <li>
-                <HoverSwapText as="a" href="#section3">
-                  Work
-                </HoverSwapText>
-              </li>
-              <li>
-                <HoverSwapText as="a" href="#footer">
-                  Contact
-                </HoverSwapText>
+                <HoverSwapText as="p">010-4763-0262</HoverSwapText>
               </li>
             </ul>
           </div>
 
           <div className="footer_nav downCenter">
-            <h6>Stay Connected</h6>
+            <h6>Email</h6>
             <ul>
               <li>
-                <HoverSwapText as="p">Phone : 010-4763-0262</HoverSwapText>
-              </li>
-              <li>
-                <HoverSwapText as="p">Email : dacjj123@naver.com</HoverSwapText>
-              </li>
-              <li>
-                {/*  외부 링크는 기본 동작 유지 */}
-                <HoverSwapText
-                  as="a"
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </HoverSwapText>
+                <HoverSwapText as="p">dacjj123@naver.com</HoverSwapText>
               </li>
             </ul>
           </div>
 
           <div className="footer_nav downRight">
-            <h6>Legal</h6>
+            <h6>GitHub</h6>
             <ul>
               <li>
-                <HoverSwapText as="p">PRIVACY</HoverSwapText>
-              </li>
-              <li>
-                <p className="hs legal_p2">
-                  <span className="hs__inner" aria-hidden="true">
-                    <span className="hs__text">
-                      This site does not collect <span className="legal_break">personal data.</span>
-                    </span>
-                    <span className="hs__text hs__text--clone">
-                      This site does not collect <span className="legal_break">personal data.</span>
-                    </span>
-                  </span>
-
-                  <span className="sr-only">This site does not collect personal data.</span>
-                </p>
+                <HoverSwapText as="p">https://github.com/Guhang-web</HoverSwapText>
               </li>
             </ul>
           </div>
