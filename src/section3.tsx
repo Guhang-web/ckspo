@@ -8,37 +8,36 @@ const BOXES: {
   label: string;
   boxClass: string;
   navClass: string;
-  href: string;
+  href?: string;
 }[] = [
-  {
-    key: "lotteCultureworks",
-    label: "LotteCultureworks",
-    boxClass: "lotteCultureworks",
-    navClass: "lotteCultureworks_nav",
-    href: "https://guhang-web.github.io/Lotte_important/",
-  },
-  {
-    key: "lego",
-    label: "Lego",
-    boxClass: "lego",
-    navClass: "lego_nav",
-    href: "https://example.com", // 바꿔줘
-  },
-  {
-    key: "amio",
-    label: "Amio",
-    boxClass: "amio",
-    navClass: "amio_nav",
-    href: "https://guhang-web.github.io/Amio/",
-  },
-  {
-    key: "mung",
-    label: "Mung",
-    boxClass: "mung",
-    navClass: "mung_nav",
-    href: "https://example.com", // 바꿔줘
-  },
-];
+    {
+      key: "lotteCultureworks",
+      label: "LotteCultureworks",
+      boxClass: "lotteCultureworks",
+      navClass: "lotteCultureworks_nav",
+      href: "https://guhang-web.github.io/Lotte_important/",
+    },
+    {
+      key: "lego",
+      label: "Lego",
+      boxClass: "lego",
+      navClass: "lego_nav",
+      href: "https://lego-x31y.vercel.app",
+    },
+    {
+      key: "amio",
+      label: "Amio",
+      boxClass: "amio",
+      navClass: "amio_nav",
+      href: "https://guhang-web.github.io/Amio/",
+    },
+    {
+      key: "mung",
+      label: "Mung",
+      boxClass: "mung",
+      navClass: "mung_nav",
+    },
+  ];
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
@@ -192,13 +191,15 @@ function Section3() {
     calcTarget();
   };
 
-  const openProject = (href: string) => {
+  const openProject = (href?: string) => {
+    if (!href) return;
     window.open(href, "_blank", "noopener,noreferrer");
   };
 
   const rendered = useMemo(() => {
     return BOXES.map((box) => {
       const isHovered = hoveredKey === box.key;
+      const clickable = Boolean(box.href);
 
       return (
         <ul
@@ -211,10 +212,11 @@ function Section3() {
           onPointerLeave={handleLeave}
           onPointerMove={handleMove(box.key)}
           onClick={() => openProject(box.href)}
-          role="link"
-          tabIndex={0}
-          aria-label={`${box.label} 프로젝트 열기`}
+          role={clickable ? "link" : "group"}
+          tabIndex={clickable ? 0 : -1}
+          aria-label={clickable ? `${box.label} 프로젝트 열기` : `${box.label}`}
           onKeyDown={(e) => {
+            if (!clickable) return;
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
               openProject(box.href);

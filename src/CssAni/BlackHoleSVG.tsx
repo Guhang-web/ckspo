@@ -126,7 +126,7 @@ export default function BlackHoleSVG() {
       </circle>
 
       {/* === 블랙홀 코어 === */}
-      <circle cx="100" cy="100" r="36" fill="url(#coreFade)" opacity={0.9}/>
+      <circle cx="100" cy="100" r="36" fill="url(#coreFade)" opacity={0.9} />
 
       {/* === 중심 미세 수축 === */}
       <circle cx="100" cy="100" r="36" fill="#131212ff">
@@ -138,6 +138,41 @@ export default function BlackHoleSVG() {
           repeatCount="indefinite"
         />
       </circle>
+      <g
+        style={{
+          transformBox: "fill-box",
+          transformOrigin: "center",
+        }}
+      >
+        <animateTransform
+          attributeName="transform"
+          type="scale"
+          values="1; 0.92; 1"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+
+        <text
+          x="100"
+          y="106"
+          textAnchor="middle"
+          fill="#ffffff"
+          stroke="#000000"
+          strokeWidth="1.6"
+          paintOrder="stroke"
+          fontSize="18"
+          fontWeight="800"
+          style={{ pointerEvents: "none", userSelect: "none" }}
+        >
+          <animate
+            attributeName="opacity"
+            values="0.9; 0.55; 0.9"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+          QA
+        </text>
+      </g>
     </svg>
   );
 }
