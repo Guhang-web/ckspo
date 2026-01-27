@@ -139,7 +139,7 @@ function Footer() {
             기억에 남는 화면 경험을 만듭니다.
           </p>
 
-          {/* ✅ 외부 링크(PDF)는 그대로 동작 */}
+          {/*  외부 링크(PDF)는 그대로 동작 */}
           <a
             className="resume download_resume"
             href="/resume/최광서_이력서.pdf"

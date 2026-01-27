@@ -48,19 +48,19 @@ export default function Section1() {
         {
           key: "americano",
           label: "Cafe Employee",
-          desc: "2017.01 - 2018.12(Operations)",
+          desc: "2017.01 - 2018.4(Operations)",
           Visual: Americano as VisualComp,
         },
         {
           key: "milk",
           label: "Cafe Deputy Manager",
-          desc: "2019.01 - 2021.01(Management)",
+          desc: "2018.05 - 2020.01(Management)",
           Visual: MilkSVG as VisualComp,
         },
         {
           key: "latteArt",
           label: "Cafe Manager",
-          desc: "2021.02 - 2025.04(Store Management)",
+          desc: "2020.02 - 2024.05(Store Management)",
           Visual: LatteArt as VisualComp,
         },
         {
