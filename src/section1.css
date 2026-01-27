@@ -310,11 +310,6 @@ font-size: 20px;
         font-size: clamp(12px, 2vw, 16px);
     }
        #section1 .section1Bottom {
-        top: 520px;
-    }
-}
-@media (max-height: 650px) {
-       #section1 .section1Bottom {
-        top: 600px;
+        top: 620px;
     }
 }
