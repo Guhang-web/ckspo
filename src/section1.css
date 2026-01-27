@@ -57,28 +57,14 @@ p {
     left: 48%;
     top: 0;
     transform: translateX(-50%);
-    width: clamp(240px, 20vw, 360px);
-    height: auto;
+    width: clamp(240px, 20vw, 280px);
+    height: clamp(240px, 20vw, 280px);
     z-index: 20;
     border-radius: 10px;
     pointer-events: none;
     will-change: top;
     background-color: ivory;
 }
-
-#section1 .section1Middle .mungLayout {
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: opacity 220ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-#section1 .section1Middle .section1Layout.is-visual .mungLayout {
-    opacity: 0;
-    transform: scale(0.98);
-}
-
 #section1 .s1VisualStage {
     position: absolute;
     inset: 0;
@@ -131,7 +117,7 @@ p {
 }
 
 .introduce .introText {
-     font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
     font-size: clamp(20px, 2vw, 20px);
     font-weight: 700;
     line-height: 1.5;
@@ -197,7 +183,9 @@ p {
 #section1 .section1Bottom .listItem:hover .s1List {
     font-size: 28px;
 }
-
+#section1 .section1Bottom .listItem:hover .explanation {
+font-size: 20px;
+}
 
 /* wheel step 이동용 (CSS 변수 기반) */
 #section1 .section1Top .section1Css1 {
@@ -268,6 +256,9 @@ p {
 }
 
 @media (max-width:870px) {
+    #section1 .section1Middle .section1Layout {
+    height: clamp(200px, 20vw, 280px);
+}
     #section1 .section1Bottom {
         top: clamp(300px, 34%, 600px);
     }
@@ -290,8 +281,24 @@ p {
     }
 
     #section1 .section1Middle .section1Layout {
-        width: clamp(180px, 20vw, 360px);
+        width: clamp(180px, 20vw, 280px);
+        height: clamp(160px, 20vw, 280px);
     }
+}
+@media (max-width:680px) {
+    #section1 .section1Bottom .listItem {
+        font-size: clamp(10px, 2vw, 16px);
+    }
+
+    #section1 .section1Middle .section1Layout {
+        width: clamp(180px, 20vw, 280px);
+        height: clamp(160px, 20vw, 280px);
+    }
+}
+@media (max-width:450px) {
+ #section1 .section1Middle .section1Layout {
+    left: 30%;
+}
 }
 
 @media (max-height: 780px) {
@@ -301,5 +308,13 @@ p {
 
     .introduce .introText {
         font-size: clamp(12px, 2vw, 16px);
+    }
+       #section1 .section1Bottom {
+        top: 520px;
+    }
+}
+@media (max-height: 650px) {
+       #section1 .section1Bottom {
+        top: 600px;
     }
 }

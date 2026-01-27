@@ -299,6 +299,16 @@
         height: 60px;
     }
 }
+@media (max-width:440px){
+    #nav .navBox {
+    width: clamp(340px, 2vw, 380px);
+    gap: 10px;
+}
+#nav .navBox .navAbout {
+    margin-left: 10px;
+}
+}
+
 @media (max-height:750px) {
     #nav #globalMenu .menuMeddle {
         font-size: 2em;

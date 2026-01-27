@@ -3,11 +3,41 @@ import "./section3.css";
 
 type BoxKey = "lotteCultureworks" | "lego" | "amio" | "mung";
 
-const BOXES: { key: BoxKey; label: string; boxClass: string; navClass: string }[] = [
-  { key: "lotteCultureworks", label: "LotteCultureworks", boxClass: "lotteCultureworks", navClass: "lotteCultureworks_nav" },
-  { key: "lego", label: "Lego", boxClass: "lego", navClass: "lego_nav" },
-  { key: "amio", label: "Amio", boxClass: "amio", navClass: "amio_nav" },
-  { key: "mung", label: "Mung", boxClass: "mung", navClass: "mung_nav" },
+const BOXES: {
+  key: BoxKey;
+  label: string;
+  boxClass: string;
+  navClass: string;
+  href: string;
+}[] = [
+  {
+    key: "lotteCultureworks",
+    label: "LotteCultureworks",
+    boxClass: "lotteCultureworks",
+    navClass: "lotteCultureworks_nav",
+    href: "https://guhang-web.github.io/Lotte_important/",
+  },
+  {
+    key: "lego",
+    label: "Lego",
+    boxClass: "lego",
+    navClass: "lego_nav",
+    href: "https://example.com", // 바꿔줘
+  },
+  {
+    key: "amio",
+    label: "Amio",
+    boxClass: "amio",
+    navClass: "amio_nav",
+    href: "https://guhang-web.github.io/Amio/",
+  },
+  {
+    key: "mung",
+    label: "Mung",
+    boxClass: "mung",
+    navClass: "mung_nav",
+    href: "https://example.com", // 바꿔줘
+  },
 ];
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
@@ -15,7 +45,6 @@ const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(ma
 function Section3() {
   const [hoveredKey, setHoveredKey] = useState<BoxKey | null>(null);
 
-  // DOM refs
   const boxRefs = useRef<Record<BoxKey, HTMLUListElement | null>>({
     lotteCultureworks: null,
     lego: null,
@@ -30,24 +59,14 @@ function Section3() {
     mung: null,
   });
 
-  //  즉시 반영용 ref (state 타이밍 문제 제거)
   const activeKeyRef = useRef<BoxKey | null>(null);
-
-  //  App에서 쏘는 가상스크롤 값 캐싱
   const vscrollYRef = useRef(0);
-
-  //  마지막 포인터(뷰포트 기준) Y
   const pointerYRef = useRef(0);
-
-  //  활성 박스의 “절대 top” (가상스크롤 0 기준 top), height 캐싱
   const absTopRef = useRef(0);
   const boxHRef = useRef(0);
-
-  //  활성 바 높이/패딩 캐싱
-  const barHalfHRef = useRef(40); // 초기값, enter 시 실제 높이로 갱신
+  const barHalfHRef = useRef(40);
   const paddingRef = useRef(10);
 
-  //  lerp 애니메이션 (현재/목표)
   const targetYRef = useRef(0);
   const currentYRef = useRef(0);
   const rafRef = useRef<number | null>(null);
@@ -73,10 +92,9 @@ function Section3() {
     const padding = paddingRef.current;
     const halfH = barHalfHRef.current;
 
-    // vscroll 값으로 rect.top을 “레이아웃 읽기 없이” 계산
     const rectTop = absTopRef.current - vscrollYRef.current;
+    const rawY = pointerYRef.current - rectTop;
 
-    const rawY = pointerYRef.current - rectTop; // 박스 내부 y
     const minTop = padding + halfH;
     const maxTop = boxH - padding - halfH;
 
@@ -92,8 +110,6 @@ function Section3() {
         rafRef.current = null;
         return;
       }
-
-      //  관성(부드러움) — 값 조절 포인트
       const cur = currentYRef.current;
       const target = targetYRef.current;
       const next = cur + (target - cur) * 0.22;
@@ -107,15 +123,11 @@ function Section3() {
     rafRef.current = requestAnimationFrame(tick);
   };
 
-  //  vscroll 이벤트 수신 (App.tsx에서 dispatch)
   useEffect(() => {
     const onVScroll = (e: Event) => {
       const ce = e as CustomEvent<{ y: number }>;
-      const y = ce?.detail?.y ?? 0;
-      vscrollYRef.current = y;
-
+      vscrollYRef.current = ce?.detail?.y ?? 0;
       if (!activeKeyRef.current) return;
-      // 스크롤로 박스 위치가 변하니 목표값 재계산만(레이아웃 읽기 X)
       calcTarget();
     };
 
@@ -123,7 +135,6 @@ function Section3() {
     return () => window.removeEventListener("vscroll", onVScroll as EventListener);
   }, []);
 
-  //  리사이즈 시만 다시 측정(레이아웃 읽기 최소화)
   useEffect(() => {
     const onResize = () => {
       const key = activeKeyRef.current;
@@ -136,11 +147,9 @@ function Section3() {
       const rect = boxEl.getBoundingClientRect();
       absTopRef.current = rect.top + vscrollYRef.current;
       boxHRef.current = rect.height;
-
       barHalfHRef.current = barEl.getBoundingClientRect().height / 2;
 
       calcTarget();
-      // 리사이즈 직후 튐 방지: 현재도 목표로 맞춰서 시작
       currentYRef.current = targetYRef.current;
       applyBarY(key, currentYRef.current);
     };
@@ -159,14 +168,11 @@ function Section3() {
     const barEl = barRefs.current[key];
     if (!boxEl || !barEl) return;
 
-    //  진입 시 1회만 레이아웃 측정
     const rect = boxEl.getBoundingClientRect();
-    absTopRef.current = rect.top + vscrollYRef.current; // 절대 top(가상스크롤 0 기준)
+    absTopRef.current = rect.top + vscrollYRef.current;
     boxHRef.current = rect.height;
-
     barHalfHRef.current = barEl.getBoundingClientRect().height / 2;
 
-    // 목표 계산 + 즉시 위치 맞추고 애니메이션 시작
     calcTarget();
     currentYRef.current = targetYRef.current;
     applyBarY(key, currentYRef.current);
@@ -186,6 +192,10 @@ function Section3() {
     calcTarget();
   };
 
+  const openProject = (href: string) => {
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+
   const rendered = useMemo(() => {
     return BOXES.map((box) => {
       const isHovered = hoveredKey === box.key;
@@ -200,6 +210,16 @@ function Section3() {
           onPointerEnter={handleEnter(box.key)}
           onPointerLeave={handleLeave}
           onPointerMove={handleMove(box.key)}
+          onClick={() => openProject(box.href)}
+          role="link"
+          tabIndex={0}
+          aria-label={`${box.label} 프로젝트 열기`}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openProject(box.href);
+            }
+          }}
         >
           <li
             ref={(el) => {

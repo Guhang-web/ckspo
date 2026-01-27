@@ -48,47 +48,47 @@ export default function Section1() {
         {
           key: "americano",
           label: "Cafe Employee",
-          desc: "2017.01 - 2018.12()",
+          desc: "2017.01 - 2018.12(Operations)",
           Visual: Americano as VisualComp,
         },
         {
           key: "milk",
           label: "Cafe Deputy Manager",
-          desc: "2019.01 - 2021.01()",
+          desc: "2019.01 - 2021.01(Management)",
           Visual: MilkSVG as VisualComp,
         },
         {
           key: "latteArt",
           label: "Cafe Manager",
-          desc: "2021.02 - 2025.04()",
+          desc: "2021.02 - 2025.04(Store Management)",
           Visual: LatteArt as VisualComp,
         },
         {
           key: "blackhole",
           label: "QA",
-          desc: "2025-04 - 2025.12()",
-        Visual: BlackHoleSVG as VisualComp,
-      },
-        
+          desc: "2025-04 - 2025.12(Quality Assurance)",
+          Visual: BlackHoleSVG as VisualComp,
+        },
+
         {
           key: "airpods",
           label: "Design Study",
-          desc: "2024.10 - 2024.12()",
+          desc: "2024.10 - 2024.12(‘Design Tools)",
           Visual: AirpodsSVG as VisualComp,
         },
         {
           key: "robot",
           label: "Front-end Study",
-          desc: "2024.10 - 2026.01()",
+          desc: "2024.10 - 2026.01((Fundamentals)",
           Visual: RobotSVG as VisualComp,
         },
       ] as const,
     []
   );
+  const displayIndex = hoverIndex ?? 0;
+  const DisplayVisual = tools[displayIndex]?.Visual ?? null;
 
-  const displayIndex = hoverIndex ?? activeIndex;
-  const DisplayVisual =
-    hoverIndex !== null ? tools[displayIndex]?.Visual ?? null : null;
+
 
   /**
    * TOP parallax (vscroll 기반)
@@ -298,12 +298,6 @@ export default function Section1() {
           className={`section1Layout ${DisplayVisual ? "is-visual" : ""}`}
           ref={pinRef}
         >
-          <img
-            className="mungLayout"
-            src="./section/mungYa.png"
-            alt="뭉 웃는모습"
-          />
-
           <div
             className={`s1VisualStage ${DisplayVisual ? "is-on" : ""}`}
             aria-hidden="true"

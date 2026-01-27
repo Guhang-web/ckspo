@@ -35,7 +35,7 @@
 #section2 .section2Middle .section2Middle_p {
     font-size: 18px;
     line-height: 30px;
-     font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
 }
 
 #section2 .section2Middle .section2Tool {
@@ -128,9 +128,10 @@
 }
 
 #section2 .listTool.is-active .tool {
-    background: linear-gradient(#f5bfae 0%,
-            #f86d36 70%,
-            #ff5e01 100%);
+    background: linear-gradient(#dfe9ff 0%,
+            #2f80ed 70%,
+            #0b2d6b 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transform: scale(1.2);
@@ -161,6 +162,7 @@
         left: 0;
     }
 }
+
 @media (max-width:880px) {
     #section2 {
         margin-top: -400px;
@@ -171,7 +173,7 @@
     #section2 {
         height: 134vh;
     }
-    
+
     #section2 .section2Layout {
         width: 320px;
     }
