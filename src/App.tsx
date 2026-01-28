@@ -1,5 +1,5 @@
 // App.tsx
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import Loding from "./loding";
 import Header from "./header";
@@ -149,7 +149,7 @@ export default function App() {
         />
       )}
 
-      <Nav hidden={hideNav} />
+      {ready && <Nav hidden={hideNav} />}
 
       <div className="vs">
         <div className="vs__content" ref={contentRef}>
