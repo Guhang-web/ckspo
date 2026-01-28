@@ -34,11 +34,15 @@
 #footer .footer_box .footer_boxUp h4 {
     font-size: 28px;
     margin: 10px 0;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    font-weight:400;
 }
 
 #footer .footer_box .footer_boxUp p {
-    color: rgb(155, 145, 145);
+    color: #004bd5;
     margin-bottom: 16px;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    font-weight:400;
 }
 
 #footer .footer_box .footer_boxUp .resume {
@@ -139,7 +143,7 @@
 
 #footer .footer_box .footer_boxDown .footer_nav ul li {
     padding: 0;
-    font-size: 24px;
+    font-size: 42px;
     line-height: 1.5;
 }
 

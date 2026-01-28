@@ -177,7 +177,7 @@ function Footer() {
             <h6>GitHub</h6>
             <ul>
               <li>
-                <HoverSwapText as="p" className="github_url">https://github.com/Guhang-web</HoverSwapText>
+                <HoverSwapText as="p" className="github_url">Guhang-web</HoverSwapText>
                 <HoverSwapText as="a" className="github_link"
                   href="https://github.com/"
                   target="_blank"
