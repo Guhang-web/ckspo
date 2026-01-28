@@ -1,9 +1,9 @@
 html {
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 body {
+  overflow: hidden;
   overscroll-behavior: none;
   font-family: "Bodoni Moda", serif;
 }
