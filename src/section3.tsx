@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./section3.css";
+import DropletRain from "./CssAni/DropletRain"
 
-type BoxKey = "lotteCultureworks" | "lego" | "amio" | "mung";
+type BoxKey = "lotteCultureworks" | "lego" | "amio" | "water_drop";
 
 const BOXES: {
   key: BoxKey;
@@ -32,10 +33,10 @@ const BOXES: {
       href: "https://guhang-web.github.io/Amio/",
     },
     {
-      key: "mung",
-      label: "Mung",
-      boxClass: "mung",
-      navClass: "mung_nav",
+      key: "water_drop",
+      label: "water drop",
+      boxClass: "water_drop",
+      navClass: "water_drop_nav",
     },
   ];
 
@@ -48,14 +49,14 @@ function Section3() {
     lotteCultureworks: null,
     lego: null,
     amio: null,
-    mung: null,
+    water_drop: null,
   });
 
   const barRefs = useRef<Record<BoxKey, HTMLLIElement | null>>({
     lotteCultureworks: null,
     lego: null,
     amio: null,
-    mung: null,
+    water_drop: null,
   });
 
   const activeKeyRef = useRef<BoxKey | null>(null);
@@ -120,6 +121,38 @@ function Section3() {
     };
 
     rafRef.current = requestAnimationFrame(tick);
+  };
+  const isTouchDevice = () =>
+    typeof window !== "undefined" && (navigator.maxTouchPoints ?? 0) > 0;
+
+  // 모바일에서 드래그/터치 시작 시 bar 추적 시작
+  const handleTouchStart = (key: BoxKey) => (e: React.PointerEvent) => {
+    if (!isTouchDevice()) return;
+
+    activeKeyRef.current = key;
+    pointerYRef.current = e.clientY;
+
+    const boxEl = boxRefs.current[key];
+    const barEl = barRefs.current[key];
+    if (!boxEl || !barEl) return;
+
+    const rect = boxEl.getBoundingClientRect();
+    absTopRef.current = rect.top + vscrollYRef.current;
+    boxHRef.current = rect.height;
+    barHalfHRef.current = barEl.getBoundingClientRect().height / 2;
+
+    calcTarget();
+    currentYRef.current = targetYRef.current;
+    applyBarY(key, currentYRef.current);
+
+    startAnim();
+  };
+
+  // 모바일에서 터치 종료 시 추적 종료
+  const handleTouchEnd = () => {
+    if (!isTouchDevice()) return;
+    activeKeyRef.current = null;
+    stopAnim();
   };
 
   useEffect(() => {
@@ -208,6 +241,9 @@ function Section3() {
             boxRefs.current[box.key] = el;
           }}
           className={`s3Box ${box.boxClass} ${isHovered ? "isHovered" : ""}`}
+          onPointerDown={handleTouchStart(box.key)}
+          onPointerUp={handleTouchEnd}
+          onPointerCancel={handleTouchEnd}
           onPointerEnter={handleEnter(box.key)}
           onPointerLeave={handleLeave}
           onPointerMove={handleMove(box.key)}
@@ -223,6 +259,7 @@ function Section3() {
             }
           }}
         >
+            {box.key === "water_drop" && <DropletRain count={20} seed={31} />}
           <li
             ref={(el) => {
               barRefs.current[box.key] = el;

@@ -35,14 +35,14 @@
     font-size: 28px;
     margin: 10px 0;
     font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
-    font-weight:400;
+    font-weight: 400;
 }
 
 #footer .footer_box .footer_boxUp p {
     color: #004bd5;
     margin-bottom: 16px;
     font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
-    font-weight:400;
+    font-weight: 400;
 }
 
 #footer .footer_box .footer_boxUp .resume {
@@ -204,8 +204,14 @@
     transition: transform 260ms cubic-bezier(.2, .7, .2, 1);
     transform: translate3d(0, -110%, 0);
 }
-#footer .footer_box .footer_boxDown .downRight .github_url { display: inline-block; }
-#footer .footer_box .footer_boxDown .downRight .github_link { display: none; }
+
+#footer .footer_box .footer_boxDown .downRight .github_url {
+    display: inline-block;
+}
+
+#footer .footer_box .footer_boxDown .downRight .github_link {
+    display: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
     #footer .footer_box .footer_boxDown .footer_nav ul li .hs__text {
@@ -269,32 +275,38 @@
     pointer-events: none;
 }
 
-@media (max-width:1300px) {
+@media (max-width:1480px) {
     #footer .footer_box .footer_boxDown .footer_nav ul li {
-    font-size: 18px;
+        font-size: 30px;
+    }
 }
-}
+
 @media (max-width:1024px) {
     #footer .footer_box .footer_boxDown .footer_nav ul li {
-    font-size: 14px;
-}
-#footer .footer_box .footer_boxDown .footer_nav ul li .hs:hover .hs__text {
-    transform: translate3d(0, -120%, 0);
-}
-}
-@media (max-width:780px){
-  #footer .github_url { display: none !important; }
-  #footer .github_link { display: block !important; }
+        font-size: 18px;
+    }
+
+    #footer .footer_box .footer_boxDown .footer_nav ul li .hs:hover .hs__text {
+        transform: translate3d(0, -120%, 0);
+    }
 }
 @media (max-width:750px) {
     #footer .footer_box .footer_boxDown .footer_nav {
         overflow: hidden;
-        
+
     }
+
     .legal_p2 .legal_break {
         display: block;
     }
 }
+
+@media (max-width:680px) {
+    #footer .footer_box .footer_boxDown .footer_nav ul li {
+        font-size: 14px;
+    }
+}
+
 @media (max-width:550px) {
     #footer .footer_box .footer_boxDown .footer_nav ul {
         left: 5px;
@@ -303,12 +315,22 @@
     #footer .footer_box .footer_boxDown .footer_nav ul li {
         max-width: 100%;
     }
+
+    #footer .github_url {
+        display: none !important;
+    }
+
+    #footer .github_link {
+        display: block !important;
+    }
 }
+
 @media (max-width:500px) {
     #footer .footer_box .footer_boxDown .footer_nav ul li {
         font-size: 12px;
     }
 }
+
 @media (max-width:420px) {
     #footer .footer_box .footer_boxDown .footer_nav ul li {
         font-size: 10px;

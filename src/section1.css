@@ -65,6 +65,7 @@ p {
     will-change: top;
     background-color: ivory;
 }
+
 #section1 .s1VisualStage {
     position: absolute;
     inset: 0;
@@ -166,6 +167,20 @@ p {
         transform 220ms ease;
 }
 
+#section1 .section1Bottom .listItem.is-active {
+    color: #000;
+    max-height: 75px;
+    padding: 20px 0;
+}
+
+#section1 .section1Bottom .listItem.is-active .s1List {
+    font-size: 28px;
+}
+
+#section1 .section1Bottom .listItem.is-active .explanation {
+    font-size: 20px;
+}
+
 #section1 .section1Bottom .listItem:hover {
     color: #000;
     max-height: 75px;
@@ -183,8 +198,9 @@ p {
 #section1 .section1Bottom .listItem:hover .s1List {
     font-size: 28px;
 }
+
 #section1 .section1Bottom .listItem:hover .explanation {
-font-size: 20px;
+    font-size: 20px;
 }
 
 /* wheel step 이동용 (CSS 변수 기반) */
@@ -257,8 +273,9 @@ font-size: 20px;
 
 @media (max-width:870px) {
     #section1 .section1Middle .section1Layout {
-    height: clamp(200px, 20vw, 280px);
-}
+        height: clamp(200px, 20vw, 280px);
+    }
+
     #section1 .section1Bottom {
         top: clamp(300px, 34%, 600px);
     }
@@ -285,20 +302,11 @@ font-size: 20px;
         height: clamp(160px, 20vw, 280px);
     }
 }
-@media (max-width:680px) {
-    #section1 .section1Bottom .listItem {
-        font-size: clamp(10px, 2vw, 16px);
-    }
 
-    #section1 .section1Middle .section1Layout {
-        width: clamp(180px, 20vw, 280px);
-        height: clamp(160px, 20vw, 280px);
-    }
-}
 @media (max-width:450px) {
- #section1 .section1Middle .section1Layout {
-    left: 30%;
-}
+    #section1 .section1Middle .section1Layout {
+        left: 30%;
+    }
 }
 
 @media (max-height: 780px) {
@@ -309,7 +317,20 @@ font-size: 20px;
     .introduce .introText {
         font-size: clamp(12px, 2vw, 16px);
     }
-       #section1 .section1Bottom {
+
+    #section1 .section1Bottom {
         top: 620px;
+    }
+}
+
+@media (max-height: 670px) {
+    #section1 .section1Bottom {
+        top: 520px;
+    }
+}
+
+@media (max-height: 610px) {
+    #section1 .section1Bottom {
+        top: 580px;
     }
 }

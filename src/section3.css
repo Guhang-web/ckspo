@@ -46,8 +46,9 @@
     background-image: url(/public/section/legoImg.png);
 }
 
-#section3 .poporList .mung {
+#section3 .poporList .water_drop {
     background-image: url(/public/section/mungImg.png);
+    background-size: cover;
 }
 
 #section3 .poporList .s3Box .poporbar {
@@ -63,7 +64,7 @@
     left: 0;
     top: 0;
     will-change: transform;
-    transform: translate3d(0, calc(var(--y, 50%) - 50%), 0);
+    transform: translate3d(0, calc(var(--y, 50px) - 50%), 0);
     opacity: 0;
     cursor: pointer;
 }
@@ -79,6 +80,55 @@
 .s3Box .poporbar {
     transition: none;
 }
+/* 물방울 */
+.s3Drops {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5; 
+}
+.s3Drop {
+  position: absolute;
+  left: var(--x);
+  top: -60px;
+  opacity: 0;
+  animation: s3-drop-fall var(--dur) linear var(--delay) infinite;
+}
+.s3DropInner {
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  transform: translateX(-50%);
+  animation: s3-drop-sway calc(var(--dur) * 0.8) ease-in-out var(--delay) infinite alternate;
+}
+.s3DropSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(25, 80, 180, 0.25));
+}
+@keyframes s3-drop-fall {
+  0% {
+    top: -60px;
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--op);
+  }
+  100% {
+    top: calc(100% + 80px);
+    opacity: 0;
+  }
+}
+@keyframes s3-drop-sway {
+  from {
+    transform: translateX(-50%) translateX(calc(var(--sway) * -0.25));
+  }
+  to {
+    transform: translateX(-50%) translateX(var(--sway));
+  }
+}
+
 
 @media (max-width:1024px) {
     #section3 {
@@ -91,45 +141,51 @@
 }
 
 @media (max-width:675px) {
-      #section3 {
+    #section3 {
         height: 150vh;
     }
-#section3 .poporList .s3Box {
-    width: 90%;
-    height: 36vh;
-    margin: 0;
-}
-#section3 .poporList .lotteCultureworks {
-    top: 0;
-    margin-bottom: 10px;
-}
 
-#section3 .poporList .amio {
-    top: 0px;
-    margin-bottom: 10px;
-}
+    #section3 .poporList .s3Box {
+        width: 90%;
+        height: 36vh;
+        margin: 0;
+    }
 
-#section3 .poporList .lego {
-    margin-bottom: 10px;
-}
+    #section3 .poporList .lotteCultureworks {
+        top: 0;
+        margin-bottom: 10px;
+    }
+
+    #section3 .poporList .amio {
+        top: 0px;
+        margin-bottom: 10px;
+    }
+
+    #section3 .poporList .lego {
+        margin-bottom: 10px;
+    }
+
+    #section3 .poporList .s3Box .poporbar {
+        opacity: 1;
+    }
 }
 
 @media (max-height: 780px) {
     #section3 .poporList .lotteCultureworks {
-    top: -50px;
+        top: -50px;
+    }
+
+    #section3 .poporList .amio {
+        top: -50px;
+    }
 }
 
-#section3 .poporList .amio {
-    top: -50px;
-}
-}
-
-@media (max-height:740px){
+@media (max-height:840px) {
     #section3 .poporList .lotteCultureworks {
-    top: 0;
-}
+        top: 0;
+    }
 
-#section3 .poporList .amio {
-    top: 0px;
-}
+    #section3 .poporList .amio {
+        top: 0px;
+    }
 }

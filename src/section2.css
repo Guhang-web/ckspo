@@ -196,6 +196,11 @@
     }
 }
 
+@media (max-width:450px) {
+    #section2 .section2Middle {
+    padding-top: 200px;
+}
+}
 @media (max-width:420px) {
     #section2 .section2Middle .listTool {
         font-size: clamp(12px, 4vw, 20px);
@@ -207,4 +212,10 @@
         margin-top: -100px;
         height: 180vh;
     }
+}
+@media (max-height: 670px) {
+#section2 .section2Middle {
+    padding-top: 200px;
+}
+
 }

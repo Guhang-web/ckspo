@@ -85,9 +85,13 @@ export default function Section1() {
       ] as const,
     []
   );
-  const displayIndex = hoverIndex ?? 0;
-  const DisplayVisual = tools[displayIndex]?.Visual ?? null;
+  const isCoarse = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia?.("(hover: none) and (pointer: coarse)")?.matches ?? false;
+  }, []);
 
+  const displayIndex = hoverIndex ?? activeIndex;
+  const DisplayVisual = tools[displayIndex]?.Visual ?? null;
 
 
   /**
@@ -331,14 +335,25 @@ export default function Section1() {
               key={t.key}
               className="listItem s1-item"
               tabIndex={0}
-              onMouseEnter={() => setHoverIndex(idx)}
-              onMouseLeave={() => setHoverIndex(null)}
+              onPointerEnter={() => {
+                if (!isCoarse) setHoverIndex(idx);
+              }}
+              onPointerLeave={() => {
+                if (!isCoarse) setHoverIndex(null);
+              }}
+              onClick={() => {
+                if (isCoarse) {
+                  setHoverIndex((prev) => (prev === idx ? null : idx));
+                  setActiveIndex(idx);
+                }
+              }}
               onFocus={() => setHoverIndex(idx)}
               onBlur={() => setHoverIndex(null)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
                   setActiveIndex(idx);
+                  setHoverIndex(idx);
                 }
               }}
               aria-label={`${t.label}: ${t.desc}`}
