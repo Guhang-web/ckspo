@@ -39,7 +39,9 @@ export default function Section1() {
   // list
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  // 모바일: 스크롤 기준으로만 갱신됨
   const [activeIndex, setActiveIndex] = useState(0);
+  // 데스크톱: hover로만 사용됨
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const tools: readonly ToolItem[] = useMemo(
@@ -85,14 +87,6 @@ export default function Section1() {
     []
   );
 
-  // ✅ 터치 디바이스(hover 없음) 판별
-  const isCoarse = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return (
-      window.matchMedia?.("(hover: none) and (pointer: coarse)")?.matches ?? false
-    );
-  }, []);
-
   // ✅ 데스크톱(hover 가능) 판별
   const isHoverable = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -102,23 +96,18 @@ export default function Section1() {
   }, []);
 
   /**
-   * ✅ UI에서 “활성처럼 보이게” 할 기준
-   * - 데스크톱: hoverIndex가 있으면 hover가 우선
-   * - 모바일: activeIndex(스크롤로 자동 갱신)가 기준
+   * ✅ “보이는 활성”과 “비주얼 표시”를 완전히 분리
+   * - 데스크톱: hoverIndex가 있으면 그게 보이고(hover 느낌), 없으면 activeIndex
+   * - 모바일: 무조건 activeIndex (스투키 느낌만)
    */
   const uiIndex = isHoverable ? hoverIndex ?? activeIndex : activeIndex;
-
-  /**
-   * ✅ 비주얼 표시 기준
-   * - 데스크톱: hover로만 바뀌도록(hoverIndex가 없으면 activeIndex 유지)
-   * - 모바일: 탭으로 선택한 hoverIndex가 있으면 그거, 없으면 activeIndex
-   */
-  const displayIndex = isHoverable ? uiIndex : hoverIndex ?? activeIndex;
+  const displayIndex = isHoverable ? uiIndex : activeIndex;
   const DisplayVisual = tools[displayIndex]?.Visual ?? null;
 
   /**
    * (1) TOP parallax
-   * ✅ vscroll(가상스크롤) + native scroll(모바일) 둘 다 지원
+   * ✅ vscroll + native scroll 모두
+   * ✅ getBoundingClientRect 기반(가상스크롤/모바일 모두 안정적)
    */
   useEffect(() => {
     const sectionEl = sectionRef.current;
@@ -126,30 +115,22 @@ export default function Section1() {
 
     const VOL_MAX = 450;
     const BH_MAX = 180;
-    const RANGE_PX = 1100;
+    const RANGE_PX = 700;
 
     let raf = 0;
-    let latestY = 0;
-
-    const getNativeScrollY = () =>
-      window.scrollY ||
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      0;
 
     const update = () => {
       raf = 0;
 
-      const sectionTop = sectionEl.offsetTop;
       const vh = window.innerHeight;
+      const rect = sectionEl.getBoundingClientRect();
 
-      const start = sectionTop - vh * 1.1;
-      const end = start + RANGE_PX;
+      const start = vh * 1.1;
+      const end = start - RANGE_PX;
 
-      const raw = (latestY - start) / (end - start);
+      const raw = (start - rect.top) / (start - end);
       const t = clamp(raw, 0, 1);
 
-      // smoothstep
       const eased = t * t * (3 - 2 * t);
 
       voltorbWrapRef.current?.style.setProperty(
@@ -167,43 +148,26 @@ export default function Section1() {
       raf = requestAnimationFrame(update);
     };
 
-    // (A) 가상 스크롤 이벤트
-    const onVScroll = (e: Event) => {
-      const ce = e as CustomEvent<VScrollDetail>;
-      latestY = ce.detail?.y ?? 0;
-      schedule();
-    };
-
-    // (B) 네이티브 스크롤 이벤트(모바일)
-    const onNativeScroll = () => {
-      latestY = getNativeScrollY();
-      schedule();
-    };
-
-    const onResize = () => {
-      latestY = getNativeScrollY();
-      schedule();
-    };
+    const onVScroll = () => schedule();
+    const onScroll = () => schedule();
+    const onResize = () => schedule();
 
     window.addEventListener("vscroll", onVScroll as EventListener);
-    window.addEventListener("scroll", onNativeScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
 
-    // 초기 1회 세팅
-    latestY = getNativeScrollY();
     schedule();
 
     return () => {
       window.removeEventListener("vscroll", onVScroll as EventListener);
-      window.removeEventListener("scroll", onNativeScroll as EventListener);
+      window.removeEventListener("scroll", onScroll as EventListener);
       window.removeEventListener("resize", onResize);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
   /**
-   * (2) middle pin: middle 내부에서 pinRef가 화면 중앙에 고정되도록 top 계산
-   * (이건 vscroll 기반이라, 네 App의 가상스크롤 구조에서 이미 잘 동작)
+   * (2) middle pin
    */
   useEffect(() => {
     const middle = middleRef.current;
@@ -252,12 +216,12 @@ export default function Section1() {
   }, []);
 
   /**
-   * (3) activeIndex: pin과 가장 가까운 리스트 아이템 활성화
-   * ✅ 모바일(hover 불가)에서만 동작
-   * ✅ 데스크톱(hover 가능)에서는 스크롤로 activeIndex를 바꾸지 않음
+   * (3) activeIndex (스투키)
+   * ✅ 모바일에서만 동작
+   * ✅ 데스크톱은 hover만 쓰게끔 스크롤 activeIndex 갱신 off
    */
   useEffect(() => {
-    if (isHoverable) return; // 데스크톱에서는 비활성화
+    if (isHoverable) return;
 
     const pin = pinRef.current;
     const bottom = bottomRef.current;
@@ -281,6 +245,7 @@ export default function Section1() {
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
 
       const pinCenter = getCenterY(pin);
+
       let bestIdx = 0;
       let bestDist = Number.POSITIVE_INFINITY;
 
@@ -376,31 +341,15 @@ export default function Section1() {
                 ]
                   .join(" ")
                   .trim()}
-                tabIndex={0}
+                // ✅ 데스크톱 hover만 허용
                 onPointerEnter={() => {
-                  // ✅ 데스크톱: hover로만 반응
                   if (isHoverable) setHoverIndex(idx);
                 }}
                 onPointerLeave={() => {
                   if (isHoverable) setHoverIndex(null);
                 }}
-                onClick={() => {
-                  // ✅ 모바일: 탭으로 선택(토글)
-                  // (hover 없는 환경에서만)
-                  if (!isHoverable && isCoarse) {
-                    setHoverIndex((prev) => (prev === idx ? null : idx));
-                    setActiveIndex(idx);
-                  }
-                }}
-                onFocus={() => setHoverIndex(idx)}
-                onBlur={() => setHoverIndex(null)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setActiveIndex(idx);
-                    setHoverIndex(idx);
-                  }
-                }}
+                // ✅ 모바일 탭/포커스/키보드로 바꾸는 기능 전부 제거(스투키만)
+                // tabIndex / onClick / onFocus / onBlur / onKeyDown 없음
                 aria-label={`${t.label}: ${t.desc}`}
               >
                 <div className={`s1List ${t.key}`}>{t.label}</div>

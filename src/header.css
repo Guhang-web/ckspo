@@ -93,11 +93,13 @@
     #header {
         height: 132vh;
     }
+
     #header #headerMain #headerBottom {
         height: auto;
     }
 
 }
+
 @media (max-width: 888px) {
     #header {
         height: 100vh;
@@ -115,8 +117,9 @@
     #header #headerMain #headerTop .slot {
         --lineH: 60px;
     }
-        #header #headerMain #headerBottom {
-            top: 400px;
+
+    #header #headerMain #headerBottom {
+        top: 400px;
     }
 }
 
@@ -133,7 +136,18 @@
         font-size: 3em;
         top: 160px;
     }
+
+    #header #headerMain #headerTop p {
+        line-height: 60px;
+    }
+
     #header #headerMain #headerBottom {
         top: 350px;
+    }
+}
+
+@media (max-width:400px) {
+    #header #headerMain #headerTop {
+        font-size: 2.5em;
     }
 }
