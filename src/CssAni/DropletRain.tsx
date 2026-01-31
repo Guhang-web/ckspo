@@ -26,13 +26,13 @@ type DropletRainProps = {
 export default function DropletRain({ count = 18, seed = 7, className = "" }: DropletRainProps) {
     const drops = useMemo<Drop[]>(() => {
         const rnd = mulberry32(seed);
-        return Array.from({ length: count }).map((_, i) => {
-            const x = rnd() * 100;                 // 0~100%
-            const dur = 2.2 + rnd() * 2.2;         // 2.2~4.4s
-            const delay = -(rnd() * dur);          // 처음부터 자연스럽게 떨어지는 상태
-            const size = 6 + rnd() * 14;           // 6~20px
-            const op = 0.35 + rnd() * 0.55;        // 0.35~0.9
-            const sway = (rnd() * 2 - 1) * (6 + rnd() * 10); // -~+ (약간 좌우 흔들림)
+        return Array.from({ length: count }).map(() => {
+            const x = rnd() * 100;                
+            const dur = 2.2 + rnd() * 2.2;         
+            const delay = -(rnd() * dur);          
+            const size = 6 + rnd() * 14;           
+            const op = 0.35 + rnd() * 0.55;        
+            const sway = (rnd() * 2 - 1) * (6 + rnd() * 10);
             return { x, dur, delay, size, op, sway };
         });
     }, [count, seed]);
@@ -76,9 +76,6 @@ export default function DropletRain({ count = 18, seed = 7, className = "" }: Dr
                                           C24 44, 36 26, 50 14 Z"
                                     fill={`url(#dropG${idx})`}
                                 />
-
-                                {/* 하이라이트 */}
-                                <ellipse cx="38" cy="30" rx="18" ry="24" fill={`url(#shineG${idx})`} />
                             </svg>
                         </span>
                     </span>
