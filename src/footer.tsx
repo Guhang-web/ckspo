@@ -179,7 +179,7 @@ function Footer() {
               <li>
                 <HoverSwapText as="p" className="github_url">Guhang-web</HoverSwapText>
                 <HoverSwapText as="a" className="github_link"
-                  href="https://github.com/"
+                  href="https://github.com/Guhang-web"
                   target="_blank"
                   rel="noopener noreferrer"
                 >Link</HoverSwapText>
