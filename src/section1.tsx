@@ -23,8 +23,6 @@ type ToolItem = {
   Visual: VisualComp;
 };
 
-type VScrollDetail = { y: number };
-
 export default function Section1() {
   const sectionRef = useRef<HTMLElement | null>(null);
 

@@ -1,5 +1,5 @@
 // section2.tsx
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./section2.css";
 
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
