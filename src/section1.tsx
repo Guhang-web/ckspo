@@ -11,8 +11,7 @@ import BlackHoleSVG from "./CssAni/BlackHoleSVG";
 import goden from "../public/section/goden.png";
 import goden2 from "../public/section/goden2.png";
 
-const clamp = (n: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, n));
+const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
 type VisualComp = React.ComponentType | null;
 
@@ -22,6 +21,22 @@ type ToolItem = {
   desc: string;
   Visual: VisualComp;
 };
+
+//  데스크톱 hover 가능 여부를 반응형으로 정확히 판별
+function calcHoverable() {
+  if (typeof window === "undefined") return false;
+
+  const canHover =
+    window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
+
+  const hasTouch = (navigator.maxTouchPoints ?? 0) > 0;
+
+  // devtools에서 폭만 줄여도 모바일 로직 타게끔 강제
+  const isMobileWidth =
+    window.matchMedia?.("(max-width: 768px)")?.matches ?? false;
+
+  return canHover && !hasTouch && !isMobileWidth;
+}
 
 export default function Section1() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -85,16 +100,28 @@ export default function Section1() {
     []
   );
 
-  // ✅ 데스크톱(hover 가능) 판별
-  const isHoverable = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return (
-      window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false
-    );
+  //  반응형으로 계속 갱신되는 isHoverable
+  const [isHoverable, setIsHoverable] = useState(false);
+
+  useEffect(() => {
+    const sync = () => setIsHoverable(calcHoverable());
+    sync();
+
+    const mql = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const add = (mql as any).addEventListener ? "addEventListener" : "addListener";
+    const remove = (mql as any).removeEventListener ? "removeEventListener" : "removeListener";
+
+    (mql as any)[add]("change", sync);
+    window.addEventListener("resize", sync);
+
+    return () => {
+      (mql as any)[remove]("change", sync);
+      window.removeEventListener("resize", sync);
+    };
   }, []);
 
   /**
-   * ✅ “보이는 활성”과 “비주얼 표시”를 완전히 분리
+   *  “보이는 활성”과 “비주얼 표시”를 완전히 분리
    * - 데스크톱: hoverIndex가 있으면 그게 보이고(hover 느낌), 없으면 activeIndex
    * - 모바일: 무조건 activeIndex (스투키 느낌만)
    */
@@ -104,8 +131,8 @@ export default function Section1() {
 
   /**
    * (1) TOP parallax
-   * ✅ vscroll + native scroll 모두
-   * ✅ getBoundingClientRect 기반(가상스크롤/모바일 모두 안정적)
+   *  vscroll + native scroll 모두
+   *  getBoundingClientRect 기반(가상스크롤/모바일 모두 안정적)
    */
   useEffect(() => {
     const sectionEl = sectionRef.current;
@@ -131,14 +158,8 @@ export default function Section1() {
 
       const eased = t * t * (3 - 2 * t);
 
-      voltorbWrapRef.current?.style.setProperty(
-        "--s1-voltorb-y",
-        `${-eased * VOL_MAX}px`
-      );
-      blackholeWrapRef.current?.style.setProperty(
-        "--s1-blackhole-y",
-        `${-eased * BH_MAX}px`
-      );
+      voltorbWrapRef.current?.style.setProperty("--s1-voltorb-y", `${-eased * VOL_MAX}px`);
+      blackholeWrapRef.current?.style.setProperty("--s1-blackhole-y", `${-eased * BH_MAX}px`);
     };
 
     const schedule = () => {
@@ -203,11 +224,13 @@ export default function Section1() {
     apply();
 
     window.addEventListener("vscroll", schedule as EventListener);
+    window.addEventListener("scroll", schedule, { passive: true }); 
     window.addEventListener("resize", schedule);
 
     return () => {
       window.removeEventListener("vscroll", schedule as EventListener);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("scroll", schedule as EventListener);
+      window.removeEventListener("resize", schedule as EventListener);
       ro.disconnect();
       if (raf) cancelAnimationFrame(raf);
     };
@@ -215,8 +238,8 @@ export default function Section1() {
 
   /**
    * (3) activeIndex (스투키)
-   * ✅ 모바일에서만 동작
-   * ✅ 데스크톱은 hover만 쓰게끔 스크롤 activeIndex 갱신 off
+   *  모바일에서만 동작
+   *  데스크톱은 hover만 쓰게끔 스크롤 activeIndex 갱신 off
    */
   useEffect(() => {
     if (isHoverable) return;
@@ -265,12 +288,15 @@ export default function Section1() {
     };
 
     window.addEventListener("vscroll", schedule as EventListener);
+    window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+
     schedule();
 
     return () => {
       window.removeEventListener("vscroll", schedule as EventListener);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("scroll", schedule as EventListener);
+      window.removeEventListener("resize", schedule as EventListener);
       if (raf) cancelAnimationFrame(raf);
     };
   }, [isHoverable]);
@@ -290,32 +316,21 @@ export default function Section1() {
       </div>
 
       <div className="section1Middle" ref={middleRef}>
-        <div
-          className={`section1Layout ${DisplayVisual ? "is-visual" : ""}`}
-          ref={pinRef}
-        >
-          <div
-            className={`s1VisualStage ${DisplayVisual ? "is-on" : ""}`}
-            aria-hidden="true"
-          >
+        <div className={`section1Layout ${DisplayVisual ? "is-visual" : ""}`} ref={pinRef}>
+          <div className={`s1VisualStage ${DisplayVisual ? "is-on" : ""}`} aria-hidden="true">
             {DisplayVisual ? <DisplayVisual /> : null}
           </div>
         </div>
 
         <div className="introduce">
           <p className="introText">
-            지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로
-            운영과 고객 경험을 쌓았고,
+            지난 <span className="accent">7년 4개월</span> 동안 카페 점장으로 운영과 고객 경험을 쌓았고,
             <br />
-            퇴사 후 <span className="accent">1년</span> Frontend를 집중
-            학습했습니다.
+            퇴사 후 <span className="accent">1년</span> Frontend를 집중 학습했습니다.
             <br />
-            <span className="accent">2025.04 ~ 25.12.31</span> 회사 운영팀에서
-            QA로 일하며 실행력을 더하였습니다.
+            <span className="accent">2025.04 ~ 25.12.31</span> 회사 운영팀에서 QA로 일하며 실행력을 더하였습니다.
             <br />
-            사용자 관점으로 결과를 만드는{" "}
-            <strong>Junior Frontend Developer</strong>{" "}
-            <strong>최광서</strong>입니다.
+            사용자 관점으로 결과를 만드는 <strong>Junior Frontend Developer</strong> <strong>최광서</strong>입니다.
           </p>
         </div>
       </div>
@@ -339,15 +354,13 @@ export default function Section1() {
                 ]
                   .join(" ")
                   .trim()}
-                // ✅ 데스크톱 hover만 허용
+                //  데스크톱 hover만 허용
                 onPointerEnter={() => {
                   if (isHoverable) setHoverIndex(idx);
                 }}
                 onPointerLeave={() => {
                   if (isHoverable) setHoverIndex(null);
                 }}
-                // ✅ 모바일 탭/포커스/키보드로 바꾸는 기능 전부 제거(스투키만)
-                // tabIndex / onClick / onFocus / onBlur / onKeyDown 없음
                 aria-label={`${t.label}: ${t.desc}`}
               >
                 <div className={`s1List ${t.key}`}>{t.label}</div>

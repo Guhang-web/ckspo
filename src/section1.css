@@ -180,27 +180,12 @@ p {
 #section1 .section1Bottom .listItem.is-active .explanation {
     font-size: 20px;
 }
-
-#section1 .section1Bottom .listItem:hover {
-    color: #000;
-    max-height: 75px;
-    padding: 20px 0;
-}
-
 #section1 .section1Bottom .listItem .s1List {
     margin-left: 20px;
     width: 59vw;
     transform: scale(1);
     transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
-}
-
-#section1 .section1Bottom .listItem:hover .s1List {
-    font-size: 28px;
-}
-
-#section1 .section1Bottom .listItem:hover .explanation {
-    font-size: 20px;
 }
 
 /* wheel step 이동용 (CSS 변수 기반) */
@@ -215,7 +200,21 @@ p {
     transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
 }
+@media (hover: hover) and (pointer: fine) {
+  #section1 .section1Bottom .listItem:hover {
+    color: #000;
+    max-height: 75px;
+    padding: 20px 0;
+  }
 
+  #section1 .section1Bottom .listItem:hover .s1List {
+    font-size: 28px;
+  }
+
+  #section1 .section1Bottom .listItem:hover .explanation {
+    font-size: 20px;
+  }
+}
 /* 접근성 */
 @media (prefers-reduced-motion: reduce) {
 
